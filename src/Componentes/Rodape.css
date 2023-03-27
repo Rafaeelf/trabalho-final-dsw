@@ -1,0 +1,35 @@
+.footer{
+    
+    display: flex;
+    flex-direction: row;
+}
+
+.principal{
+    width: 100vw;
+    height: 32.5vh;
+    background: #cfdbf2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
+}
+
+.atendimento,.sobre,.pagamento{
+    height: 100%;
+    padding-top: 30px;
+}
+
+.sobre{
+    margin-left: 100px;
+    margin-right:100px;
+    
+}
+
+#horario{
+    margin-bottom: 0;
+    
+}
+
+#ajuda{
+    margin-top: 15px;
+}
