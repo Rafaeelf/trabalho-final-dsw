@@ -24,7 +24,7 @@ function Login(){
         if(autCtx.autenticar(usuario,senha)){
             navigate(`/inicio/${usuario}`);
         } else {
-            setLoginFalhou(true);
+            setLoginFalhou(true);         
         }        
     }
 
