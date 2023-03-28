@@ -1,4 +1,3 @@
-
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import Carousel  from 'react-bootstrap/Carousel';
@@ -12,7 +11,7 @@ export default function Carrossel(){
             <Carousel.Item interval={1500}>
                 <img
                 className="d-block w-100"
-                src="./img/camisa01.jpeg"
+                src="https://media.geeksforgeeks.org/wp-content/uploads/20210425122716/1-300x115.png"
                 alt="Image One"
                 />
                 <Carousel.Caption>
@@ -23,7 +22,7 @@ export default function Carrossel(){
                 <img
                 className="d-block w-100"
                 src="https://media.geeksforgeeks.org/wp-content/uploads/20210425122716/1-300x115.png"
-                alt="Image Two"
+                alt=""
                 />
                 <Carousel.Caption>
                 </Carousel.Caption>

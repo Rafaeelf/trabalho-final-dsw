@@ -5,7 +5,7 @@ import Rodape from "./Componentes/Rodape";
 import Carrinho from "./Componentes/Carrinho";
 import Cadastro from "./Componentes/Cadastro";
 import Produtos from "./Componentes/Produtos";
-import Carrossel2 from "./Componentes/Carrossel2";
+import Carrossel from "./Componentes/Carrossel";
 
 import Card from "./Componentes/Card";
 
@@ -33,7 +33,7 @@ function HomePage(){
                  
                     <Routes>
 
-                        <Route path='/' element={<Carrossel2 />}></Route>
+                        <Route path='/' element={<Carrossel />}></Route>
                         <Route path='/Login' element={<Login />}></Route>
                         <Route path='/Cadastro' element={<Cadastro />}></Route>
                         <Route path='/Produtos' element={<Produtos/>}></Route>
@@ -45,6 +45,7 @@ function HomePage(){
                         </AuthenticateRoute>}>
                         
                          </Route>
+
                     </Routes>                    
                 </BrowserRouter>
                 <Rodape></Rodape>
