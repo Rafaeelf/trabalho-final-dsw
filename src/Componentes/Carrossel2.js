@@ -32,7 +32,7 @@ export default function Carrosel2(){
                  src="./img/logo.png"></img>
                 <p className='valor'>R$0.00</p>
                 <p>Descrição se quiser</p>
-                <div className='btnCadastrar'>
+                <div className='btnCarrihno'>
                 <a class="btn" >Adicionar Carrinho</a>      
              </div>
             </div>
@@ -42,7 +42,7 @@ export default function Carrosel2(){
                  src="./img/logo.png"></img>
                 <p className='valor'>R$0.00</p>
                 <p>Descrição se quiser</p>
-                <div className='btnCadastrar'>
+                <div className='btnCarrihno'>
                 <a class="btn" >Adicionar Carrinho</a>      
              </div>
             </div>
@@ -52,7 +52,7 @@ export default function Carrosel2(){
                  src="./img/logo.png"></img>
                 <p className='valor'>R$0.00</p>
                 <p>Descrição se quiser</p>
-                <div className='btnCadastrar'>
+                <div className='btnCarrihno'>
                 <a class="btn" >Adicionar Carrinho</a>      
              </div>
             </div>
@@ -62,7 +62,7 @@ export default function Carrosel2(){
                  src="./img/logo.png"></img>
                 <p className='valor'>R$0.00</p>
                 <p>Descrição se quiser</p>
-                <div className='btnCadastrar'>
+                <div className='btnCarrihno'>
                 <a class="btn" >Adicionar Carrinho</a>      
              </div>
             </div>
@@ -72,7 +72,7 @@ export default function Carrosel2(){
                  src="./img/logo.png"></img>
                 <p className='valor'>R$0.00</p>
                 <p>Descrição se quiser</p>
-                <div className='btnCadastrar'>
+                <div className='btnCarrihno'>
                 <a class="btn" >Adicionar Carrinho</a>      
              </div>
             </div>

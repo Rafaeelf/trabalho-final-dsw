@@ -11,30 +11,30 @@ function Cadastro(){
 
                     <Row className="mb-2">
                         <FormGroup as={Col} controlId="formGridEmail">
-                            <FormLabel>Email</FormLabel>
+                            <Form.Label>Email</Form.Label>
                             <Form.Control type="email" placeholder="E-mail">
                             </Form.Control>
                         </FormGroup>
                         <FormGroup as={Col} controlId="formGridPassword">
-                            <FormLabel>Senha</FormLabel>
+                            <Form.Label>Senha</Form.Label>
                             <FormControl type="password" placeholder="Senha"/>
                         </FormGroup>
                     </Row>
 
                     <FormGroup className="mb-2" controlId="formGridName">
-                        <FormLabel>Nome Completo</FormLabel>
+                        <Form.Label>Nome Completo</Form.Label>
                         <Form.Control placeholder="Nome Completo" />
                     </FormGroup>
 
                     <Row className="mb-2">
                         <FormGroup as={Col} controlId="formGridCpf">
-                            <FormLabel>CPF</FormLabel>
+                            <Form.Label>CPF</Form.Label>
                             <Form.Control type="integer" placeholder="CPF">
                             </Form.Control>
                         </FormGroup>
 
                         <FormGroup as={Col} controlId="formGridCartao">
-                            <FormLabel>Número Cartão</FormLabel>
+                            <Form.Label>Número Cartão</Form.Label>
                             <Form.Control type="integer" placeholder="Número Cartão">
                             </Form.Control>
                         </FormGroup>
@@ -55,46 +55,46 @@ function Cadastro(){
             <div className="dadosPessoais">
               <Row className="mb-2">
                         <FormGroup as={Col} controlId="formGridRua">
-                            <FormLabel>Rua</FormLabel>
+                            <Form.Label>Rua</Form.Label>
                             <Form.Control type="text" placeholder="Rua">
                             </Form.Control>
                         </FormGroup>
 
                         <FormGroup as={Col} controlId="formGridNumero">
-                            <FormLabel>Número</FormLabel>
+                            <Form.Label>Número</Form.Label>
                             <Form.Control type="integer" placeholder="Número Casa ou Apt">
                             </Form.Control>
                         </FormGroup>
                   </Row>
                   <Row className="mb-2">
                         <FormGroup as={Col} controlId="formGridBairro">
-                            <FormLabel>Bairro</FormLabel>
+                            <Form.Label>Bairro</Form.Label>
                             <Form.Control type="text" placeholder="Bairro">
                             </Form.Control>
                         </FormGroup>
 
                         <FormGroup as={Col} controlId="formGridCEP">
-                            <FormLabel>CEP</FormLabel>
+                            <Form.Label>CEP</Form.Label>
                             <Form.Control type="integer" placeholder="CEP">
                             </Form.Control>
                         </FormGroup>
                   </Row>
                   <Row className="mb-2">
                         <FormGroup as={Col} controlId="formGridEstado">
-                            <FormLabel>Estado</FormLabel>
+                            <Form.Label>Estado</Form.Label>
                             <Form.Control type="text" placeholder="Estado">
                             </Form.Control>
                         </FormGroup>
 
                         <FormGroup as={Col} controlId="formGridPais">
-                            <FormLabel>País</FormLabel>
+                            <Form.Label>País</Form.Label>
                             <Form.Control type="integer" placeholder="País">
                             </Form.Control>
                         </FormGroup>
                   </Row>
 
                   <FormGroup className="mb-2" controlId="formGridComplemento">
-                        <FormLabel>Complemento</FormLabel>
+                        <Form.Label>Complemento</Form.Label>
                         <Form.Control placeholder="Complemento ou referencias" />
                     </FormGroup>
             </div>

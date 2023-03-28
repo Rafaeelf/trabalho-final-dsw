@@ -1,19 +1,25 @@
 import './Card.css';
 
-function Card(){
-    return (
-      <div className="card">
-        <div className ="card-body">
-          <img src=" " className="card-img-top" alt='Imagem'></img>
-          <h5 class="card-title">
-            Camiseta Jacaré Individual
-          </h5>
-          <a href="#" class="btn-sm">
-            + Detalhes
-          </a>
-        </div>
-    </div>
-    )
+export default function Card() {
+  return (
+    <>
+      <DivContainer>
+        {Produtos.map((lanch) => (
+          <DivCard key={lanch.id}>
+            <DivContainerImg>
+              <img src={lanch.img} alt="./img/logo.png" />
+            </DivContainerImg>
+            <DivInfo>
+              <h3>{lanch.name}</h3>
+              <span>{lanch.category}</span>
+              <p>R$ {lanch.price}</p>
+              <button onClick={() => adicionarAoCarrinho(lanch)}>
+                Adicionar
+              </button>
+            </DivInfo>
+          </DivCard>
+        ))}
+      </DivContainer>
+    </>
+  );
 }
-
-export default Card;

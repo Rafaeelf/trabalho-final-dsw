@@ -1,17 +1,18 @@
+ 
 import Cabecalho from "./Componentes/Cabecalho";
 import Login from "./Componentes/Login";
 import Rodape from "./Componentes/Rodape";
-import Card from "./Componentes/Card";
 import Carrinho from "./Componentes/Carrinho";
 import Cadastro from "./Componentes/Cadastro";
 import Produtos from "./Componentes/Produtos";
-import Carrossel from "./Componentes/Carrossel";
-
 import Carrossel2 from "./Componentes/Carrossel2";
+
+import Card from "./Componentes/Card";
 
 
 import AutProvider, { useAutCtx } from "./autCtx";
 import { BrowserRouter, Navigate, Routes, Route} from "react-router-dom"
+
 
 
 function HomePage(){
@@ -32,12 +33,13 @@ function HomePage(){
                  
                     <Routes>
 
-                        <Route path='/' element={<Carrossel2 />}></Route>
-                        <Route path='/login' element={<Login />}></Route>
+                        <Route path='/' element={<Card />}></Route>
+                        <Route path='/Login' element={<Login />}></Route>
                         <Route path='/Cadastro' element={<Cadastro />}></Route>
                         <Route path='/Produtos' element={<Produtos/>}></Route>
 
-                        <Route path='/carrinho' element={
+
+                        <Route path='/Carrinho' element={
                         <AuthenticateRoute>
                             <Carrinho />
                         </AuthenticateRoute>}>
