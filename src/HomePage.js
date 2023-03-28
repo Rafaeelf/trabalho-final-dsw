@@ -33,7 +33,7 @@ function HomePage(){
                  
                     <Routes>
 
-                        <Route path='/' element={<Card />}></Route>
+                        <Route path='/' element={<Carrossel2 />}></Route>
                         <Route path='/Login' element={<Login />}></Route>
                         <Route path='/Cadastro' element={<Cadastro />}></Route>
                         <Route path='/Produtos' element={<Produtos/>}></Route>
