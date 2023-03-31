@@ -11,17 +11,17 @@ export default function Carrossel(){
             <Carousel.Item interval={1500}>
                 <img
                 className="d-block w-100"
-                src="https://media.geeksforgeeks.org/wp-content/uploads/20210425122716/1-300x115.png"
+                src="./img/banner01.jpg"
                 alt="Image One"
                 />
                 <Carousel.Caption>
                 </Carousel.Caption>
             </Carousel.Item>
 
-            <Carousel.Item interval={500}>
+            <Carousel.Item interval={1500}>
                 <img
                 className="d-block w-100"
-                src="https://media.geeksforgeeks.org/wp-content/uploads/20210425122716/1-300x115.png"
+                src="./img/banner02.jpg"
                 alt=""
                 />
                 <Carousel.Caption>

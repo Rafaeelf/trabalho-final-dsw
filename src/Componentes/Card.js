@@ -3,25 +3,17 @@ import './Card.css';
 export default function Card(){
 
     return (
-        <div>
-            <head>
-                <link href="Card.css"></link>
-            </head>
-            <body>
-                <div class="card">
-                    <img src = "./img/logo.png"></img>
-                </div>
-                <div>
-                    <h2>Inves....</h2>
-                    <h3>Type</h3>
-                    <p>
-                        Soooo
-                    </p>
-                    <button>Botaoooo</button>
-                </div>
-            </body>
-
+        
+        <div className="card">
+             <img class="card-img-top" src = "./img/camisaTeste.png"></img>
+          
+            <div class="card-body">
+                    <h5>Camisa Vermelha Estampada</h5>
+                    <p class="card-text"> R$ 50 pila </p>
+                    <a href="#" class="btn btn-primary">Visitar</a>
+            </div>
         </div>
+        
 
     )
 }

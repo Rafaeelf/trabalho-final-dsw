@@ -33,7 +33,14 @@ export default function Rodape(){
                     <h5>
                         Formas de Pagamento:
                     </h5>
-                </div>
+                    <div className='pagamento-card'> 
+                        <div>
+                            <img alt="visa" src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" />    
+                            
+                            <img alt="mastercard" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1200px-MasterCard_Logo.svg.png"/>         
+                         </div>
+                    </div>
+                 </div>
             </div>           
         </footer>
     )
