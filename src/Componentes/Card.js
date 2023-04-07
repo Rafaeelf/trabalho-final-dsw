@@ -13,5 +13,5 @@ export default function Card(){
                     <a href="#" class="btn btn-primary">Visitar</a>
             </div>
         </div>
-    )
+    );
 }

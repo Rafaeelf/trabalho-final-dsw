@@ -12,10 +12,6 @@ export default function Inicio(){
         <Card></Card>
         <br></br>
         </>
-
-
-
-        
-    )
+    );
 
 }

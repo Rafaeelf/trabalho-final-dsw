@@ -3,7 +3,6 @@ import './Produtos.css';
 export default function Produtos() {
 
     return(
-
         <div class="container">
             <div class="card">
                 <div class="card-header">
@@ -19,7 +18,6 @@ export default function Produtos() {
                         <h2>FAS</h2>
                         <img class="product-display" src=".img/camisaTeste.png"  alt="image"></img>
                      </div>
-
                 </div>
             </div>
 
@@ -48,14 +46,13 @@ export default function Produtos() {
                  <div class="color-code">
                     <h2>COLOR</h2>
                         <ul class="ul-code">
-                            <li class="red">O</li>
-                            <li class="green">O</li>
-                            <li class="yellow">O</li>
-                            <span class="money">USD <strong>24, 453</strong></span>
-                        </ul>
-
+                        <li class="red">O</li>
+                        <li class="green">O</li>
+                        <li class="yellow">O</li>
+                        <span class="money">USD <strong>24, 453</strong></span>
+                    </ul>
                 </div>
             </div>
         </div>
-    )
+    );
 }

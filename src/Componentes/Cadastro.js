@@ -156,7 +156,7 @@ function Cadastro(){
              </div>
              <br></br>
         </Form>
-    )
+    );
 }
 
 export default Cadastro;

@@ -1,13 +1,10 @@
- 
+
 import Cabecalho from "./Componentes/Cabecalho";
 import Login from "./Componentes/Login";
 import Rodape from "./Componentes/Rodape";
 import Carrinho from "./Componentes/Carrinho";
 import Cadastro from "./Componentes/Cadastro";
 import Produtos from "./Componentes/Produtos";
-
-
-import Card from "./Componentes/Card";
 
 
 import AutProvider, { useAutCtx } from "./autCtx";
