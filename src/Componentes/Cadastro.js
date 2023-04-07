@@ -99,19 +99,6 @@ function Cadastro(){
                     </FormGroup>
             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
             <div className="endereco">
                 <h4>Dados de entrega</h4>
             </div>

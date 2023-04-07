@@ -29,6 +29,6 @@ export default function Carrossel(){
             </Carousel.Item>
             
             </Carousel>
-        </div>
+         </div>
     )
 }
