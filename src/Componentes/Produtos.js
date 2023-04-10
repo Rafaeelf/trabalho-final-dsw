@@ -105,8 +105,6 @@ export default function Produtos() {
               </MDBCard>
             </MDBCol>
           </MDBRow>
-
-         
         </MDBContainer>
       );
  

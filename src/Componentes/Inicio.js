@@ -1,6 +1,6 @@
 import Carrossel from "./Carrossel";
 import Card from "./Card";
-import Produtos from "./Produtos";
+
 
 
 export default function Inicio(){
@@ -10,14 +10,8 @@ export default function Inicio(){
         <><Carrossel></Carrossel><div>
             <br></br>
         </div>
-        
         <h1>Sucesso de venda</h1>
         <Card></Card>
-        <br></br>
-        <br></br>
-
-        <Produtos></Produtos>
-       
         <br></br>
         </>
     );
