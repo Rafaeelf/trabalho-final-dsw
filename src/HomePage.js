@@ -4,7 +4,7 @@ import Login from "./Componentes/Login";
 import Rodape from "./Componentes/Rodape";
 import Carrinho from "./Componentes/Carrinho";
 import Cadastro from "./Componentes/Cadastro";
-import Produtos from "./Componentes/Produtos";
+import Produto from "./Componentes/Produto";
 
 
 import AutProvider, { useAutCtx } from "./autCtx";
@@ -36,7 +36,7 @@ function HomePage(){
                         <Route path='/inicio' element={<Inicio />}></Route>
                         <Route path='/Login' element={<Login />}></Route>
                         <Route path='/Cadastro' element={<Cadastro />}></Route>
-                        <Route path='/Produtos' element={<Produtos />}></Route>
+                        <Route path='/Produtos' element={<Produto />}></Route>
 
                         <Route path='/Carrinho' element={
                         <AuthenticateRoute>

@@ -1,58 +1,113 @@
 import './Produtos.css';
 
+import React from "react";
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBIcon,
+  MDBRipple,
+  MDBBtn,
+} from "mdb-react-ui-kit";
+
 export default function Produtos() {
 
-    return(
-        <div class="container">
-            <div class="card">
-                <div class="card-header">
-                <img class="card-logo" src=".img/camisaTeste.png"  alt="image"></img>
-                
-                <div class="product-text">
-                    <h2>HARTBEESPOORT</h2>
-                         <p>Support Our Nike Zoom Air come together
-                            for a more responsive feel with
-                            high-speed responsiveness.</p>
-                    </div>
-                    <div class="product-detail">
-                        <h2>FAS</h2>
-                        <img class="product-display" src=".img/camisaTeste.png"  alt="image"></img>
-                     </div>
-                </div>
-            </div>
+    return (
+        <MDBContainer fluid>
+          <MDBRow className="justify-content-center mb-0">
+            <MDBCol md="12" xl="10">
+              <MDBCard className="shadow-0 border rounded-3 mt-5 mb-3">
+                <MDBCardBody>
+                  <MDBRow>
+                    <MDBCol md="12" lg="3" className="mb-4 mb-lg-0">
+                      <MDBRipple
+                        rippleColor="light"
+                        rippleTag="div"
+                        className="bg-image rounded hover-zoom hover-overlay"
+                      >
+                        <MDBCardImage
+                          src="./img/camisaTeste.png"
+                          fluid
+                          className="w-100"
+                        />
+                        <a href="#!">
+                          <div
+                            className="mask"
+                            style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}
+                          ></div>
+                        </a>
+                      </MDBRipple>
+                    </MDBCol>
+                    <MDBCol md="6">
+                      <h5>Quant trident shirts</h5>
+                      <div className="d-flex flex-row">
+                        <div className="text-danger mb-1 me-2">
+                          <MDBIcon fas icon="star" />
+                          <MDBIcon fas icon="star" />
+                          <MDBIcon fas icon="star" />
+                          <MDBIcon fas icon="star" />
+                        </div>
+                        <span>310</span>
+                      </div>
+                      <div className="mt-1 mb-0 text-muted small">
+                        <span>100% cotton</span>
+                        <span className="text-primary"> • </span>
+                        <span>Light weight</span>
+                        <span className="text-primary"> • </span>
+                        <span>
+                          Best finish
+                          <br />
+                        </span>
+                      </div>
+                      <div className="mb-2 text-muted small">
+                        <span>Unique design</span>
+                        <span className="text-primary"> • </span>
+                        <span>For men</span>
+                        <span className="text-primary"> • </span>
+                        <span>
+                          Casual
+                          <br />
+                        </span>
+                      </div>
+                      <p className="text-truncate mb-4 mb-md-0">
+                        There are many variations of passages of Lorem Ipsum
+                        available, but the majority have suffered alteration in some
+                        form, by injected humour, or randomised words which don't
+                        look even slightly believable.
+                      </p>
+                    </MDBCol>
+                    <MDBCol
+                      md="6"
+                      lg="3"
+                      className="border-sm-start-none border-start"
+                    >
+                      <div className="d-flex flex-row align-items-center mb-1">
+                        <h4 className="mb-1 me-1">$13.99</h4>
+                        <span className="text-danger">
+                          <s>$20.99</s>
+                        </span>
+                      </div>
+                      <h6 className="text-success">Free shipping</h6>
+                      <div className="d-flex flex-column mt-4">
+                        <MDBBtn color="primary" size="sm">
+                          Details
+                        </MDBBtn>
+                        <MDBBtn outline color="primary" size="sm" className="mt-2">
+                          Add to wish list
+                        </MDBBtn>
+                      </div>
+                    </MDBCol>
+                  </MDBRow>
+                </MDBCardBody>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
 
-            <div class="card-bottom">
-                <div class="m-text">
-                    <h2>HARTBEE<strong>SPOORT</strong> <span>NEW</span></h2>
-                    <p>BASKET BALL COLLECTION</p>
-                    <ul class="ul-star">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star active"></li>
-                    </ul>
-                </div>
-                <div class="number">
-                    <h2>size</h2>
-                        <ul class="ul-number">
-                            <li>7</li>
-                            <li>8</li>
-                            <li>9</li>
-                            <li class="bk-col">10</li>
-                            <li>11</li>
-                        </ul>
-                 </div>
-                 <div class="color-code">
-                    <h2>COLOR</h2>
-                        <ul class="ul-code">
-                        <li class="red">O</li>
-                        <li class="green">O</li>
-                        <li class="yellow">O</li>
-                        <span class="money">USD <strong>24, 453</strong></span>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    );
+         
+        </MDBContainer>
+      );
+ 
 }
