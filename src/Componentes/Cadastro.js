@@ -107,6 +107,58 @@ function Cadastro(){
                 <Form.Check type="checkbox" label="Concordo com os termos de cadastro." />
             </FormGroup> <br></br>
 
+       
+            <div className="endereco">
+                <h4>Dados Residenciais / Cobrança</h4>
+            </div>
+
+            <br></br>
+            <div className="dadosPessoais">
+              <Row className="mb-2">
+                        <FormGroup as={Col} controlId="formGridRua">
+                            <Form.Label>Rua</Form.Label>
+                            <Form.Control type="text" placeholder="Rua">
+                            </Form.Control>
+                        </FormGroup>
+
+                        <FormGroup as={Col} controlId="formGridNumero">
+                            <Form.Label>Número</Form.Label>
+                            <Form.Control type="integer" placeholder="Número Casa ou Apt">
+                            </Form.Control>
+                        </FormGroup>
+                  </Row>
+                  <Row className="mb-2">
+                        <FormGroup as={Col} controlId="formGridBairro">
+                            <Form.Label>Bairro</Form.Label>
+                            <Form.Control type="text" placeholder="Bairro">
+                            </Form.Control>
+                        </FormGroup>
+
+                        <FormGroup as={Col} controlId="formGridCEP">
+                            <Form.Label>CEP</Form.Label>
+                            <Form.Control type="integer" placeholder="CEP">
+                            </Form.Control>
+                        </FormGroup>
+                  </Row>
+                  <Row className="mb-2">
+                        <FormGroup as={Col} controlId="formGridEstado">
+                            <Form.Label>Estado</Form.Label>
+                            <Form.Control type="text" placeholder="Estado">
+                            </Form.Control>
+                        </FormGroup>
+
+                        <FormGroup as={Col} controlId="formGridPais">
+                            <Form.Label>País</Form.Label>
+                            <Form.Control type="integer" placeholder="País">
+                            </Form.Control>
+                        </FormGroup>
+                  </Row>
+
+                  <FormGroup className="mb-2" controlId="formGridComplemento">
+                        <Form.Label>Complemento</Form.Label>
+                        <Form.Control placeholder="Complemento ou referencias" />
+                    </FormGroup>
+            </div>
 
             <div className="endereco">
                 <h4>Dados de entrega</h4>
@@ -165,7 +217,7 @@ function Cadastro(){
              </div>
              <br></br>
         </Form>
-    )
+    );
 }
 
 export default Cadastro;
