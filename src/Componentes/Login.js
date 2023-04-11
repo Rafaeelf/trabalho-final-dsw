@@ -3,17 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import { useAutCtx } from '../autCtx';
 import { Link } from "react-router-dom";
 import './Login.css';
+import { obterUserEmailApi } from '../Api/Service';
 
 function Login(){
 
-    const [usuario, setUsuario] = useState('')
+    const [emailLogin, setEmailLogin] = useState('')
     const [senha, setSenha] = useState('')
     const [loginFalhou, setLoginFalhou] = useState(false)
     const navigate = useNavigate()
     const autCtx = useAutCtx();
 
-    function usuarioHandler(event) {
-        setUsuario(event.target.value)
+    function emailLoginHandler(event) {
+        setEmailLogin(event.target.value)
     }
 
     function senhaHandler(event) {
@@ -21,8 +22,9 @@ function Login(){
     }
 
     function loginHandler(){
-        if(autCtx.autenticar(usuario,senha)){
-            navigate(`/inicio/${usuario}`);
+        const autenticado = autCtx.autenticar(emailLogin,senha);
+        if(autenticado){    
+            navigate(`/inicio`);
         } else {
             setLoginFalhou(true);         
         }        
@@ -37,8 +39,7 @@ function Login(){
                             <label for="exampleInputEmail1">
                                 Email
                             </label>
-                            <input type="text" className="form-control" id="exampleInputEmail1" placeholder='Informe seu Email' value={usuario}
-                        onChange={usuarioHandler}/>
+                            <input type="text" className="form-control" id="exampleInputEmail1" placeholder='Informe seu Email' value={emailLogin} onChange={emailLoginHandler}/>
                         </div>
                         <div className="form-group">					 
                             <label for="exampleInputPassword1">

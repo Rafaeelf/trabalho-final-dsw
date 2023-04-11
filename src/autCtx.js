@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { Await } from "react-router-dom";
+import { autenticarApi, obterUserEmailApi } from "./Api/Service";
 
 export const AutCtx    = createContext();
 export const useAutCtx = () =>useContext(AutCtx);
@@ -8,14 +8,16 @@ export default function AutProvider({children}){
     const [autenticado, setAutenticado] = useState(false);
     const[usuario,setUsuario] = useState(null);
 
-    async function autenticar(usuario,senha){
+    async function autenticar(usuario,senha){              
+        const credencial = {"userEmail": usuario, "senha":senha};
+        const resposta = await autenticarApi(credencial);
+        const foiAutenticado = resposta.data;
 
-        //const credencial = {"usuario" : usuario, "senha" : senha};
-       // const resposta = Await autenticarApi(credencial);
-
-        if (usuario == "admin" && senha == "1234") {
-            setAutenticado(true);
-            setUsuario(usuario);
+        if (foiAutenticado) {
+            const user = obterUserEmailApi(credencial.userEmail);
+            const id = (await user).data.id;
+            setUsuario(id);
+            setAutenticado(true);            
             return true;
         } else {
             setAutenticado(false);
@@ -29,8 +31,13 @@ export default function AutProvider({children}){
         setUsuario(null);
     }
 
+    function atualizaDadosCadastro(usuario){
+        setUsuario(usuario);
+        setAutenticado(true);
+    }
+
     return (
-        <AutCtx.Provider value={{autenticado, autenticar, sair, usuario}}>
+        <AutCtx.Provider value={{autenticado, autenticar, sair, usuario, atualizaDadosCadastro}}>
             {children}
         </AutCtx.Provider>
     )

@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
 import React from 'react';
 import './Cabecalho.css';
+import { AutCtx, useAutCtx } from "../autCtx";
 
 function Cabecalho(){
+
+    const autCtx = useAutCtx();
+    const foiAutenticado = autCtx.autenticado;
+
+    function sair(){
+        autCtx.sair();
+    }
 
     return (
         <header className="border-bottom border-light border-5 mb-5 p-2">
@@ -14,13 +22,12 @@ function Cabecalho(){
                     <div className="collapse navbar-collapse">
                         <ul className="navbar-nav">
                             <li className="nav=item">
-                                <Link className="nav-link" to="/">
-                                    
+                                <Link className="nav-link" to="/">                                    
                                    <a>Home</a>
                                 </Link>
                             </li>
                             <li className="nav=item">
-                                <Link className="nav-link" to = "/podutos">
+                                <Link className="nav-link" to = "/produtos">
                                    <a>Produtos</a>
                                 </Link>
                             </li>
@@ -29,14 +36,16 @@ function Cabecalho(){
                     <div>
                         <ul class="navbar-nav justify-content-end">
                             <li class="nav-item">
-                                <Link className="nav-link" to = "/login">
-                                    Login
-                                </Link>
+                                {!foiAutenticado &&
+                                <Link className="nav-link" to="/login">Efetuar Login</Link>}
+                            </li>
+                            <li className="nav=item">
+                                {foiAutenticado &&
+                                <Link className="nav-link" to="/logout" onClick={sair}>Sair</Link>}
                             </li>
                             <li class="nav-item">
-                                <Link className="nav-link" to = "/carrinho">
-                                    Carrinho
-                                </Link>
+                                {foiAutenticado &&
+                                <Link className="nav-link" to = "/carrinho">Carrinho</Link>}
                             </li>
                         </ul>
                     </div>

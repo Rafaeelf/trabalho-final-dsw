@@ -1,7 +1,71 @@
-import { Form, Col, FormControl, FormGroup, FormLabel, Row } from "react-bootstrap";
+import { Form, Col, FormControl, FormGroup, Row } from "react-bootstrap";
 import './Cadastro.css';
+import { useState } from "react";
+import { registerUserApi } from "../Api/Service";
+import { useAutCtx } from "../autCtx";
+import { Navigate } from "react-router-dom";
 
 function Cadastro(){
+
+    const autCtx = useAutCtx();
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const [nome, setNome] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [cartao, setCartao] = useState('');
+
+    function handlerEmail(event){
+        setEmail(event.target.value);
+    }
+    
+    function handlerSenha(event){
+        setSenha(event.target.value);
+    }
+    
+    function handlerNome(event){
+        setNome(event.target.value);
+        console.log(event.target.value);
+    }
+
+    function handlerCpf(event){
+        setCpf(event.target.value);
+    }
+    
+    function handlerCartao(event){
+        setCartao(event.target.value);
+    }
+
+    async function registerUser(){
+        const user = {"nome":nome,
+                        "cpf":cpf,
+                        "cartao":cartao,
+                        "email":email,
+                        "password":senha,
+                        "tipo":1};
+        console.log(user);
+        const resposta = await registerUserApi(user);
+        const idInsert = resposta.data.id;
+        console.log(idInsert);
+        if (idInsert != null) {
+            autCtx.atualizaDadosCadastro(idInsert);
+            Navigate(`/inicio`);
+            return true;
+        } else {
+            autCtx.setAutenticado(false);
+            autCtx.setUsuario(null);
+            return false;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
     return(
 
         <Form>
@@ -12,31 +76,28 @@ function Cadastro(){
                     <Row className="mb-2">
                         <FormGroup as={Col} controlId="formGridEmail">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" placeholder="E-mail">
-                            </Form.Control>
+                            <Form.Control type="email" placeholder="E-mail" value={email} onChange={handlerEmail}/>
                         </FormGroup>
                         <FormGroup as={Col} controlId="formGridPassword">
                             <Form.Label>Senha</Form.Label>
-                            <FormControl type="password" placeholder="Senha"/>
+                            <FormControl type="password" placeholder="Senha" value={senha} onChange={handlerSenha}/>
                         </FormGroup>
                     </Row>
 
                     <FormGroup className="mb-2" controlId="formGridName">
                         <Form.Label>Nome Completo</Form.Label>
-                        <Form.Control placeholder="Nome Completo" />
-                    </FormGroup>
+                        <Form.Control placeholder="Nome Completo" value={nome} onChange={handlerNome}/>
+                        </FormGroup>
 
                     <Row className="mb-2">
                         <FormGroup as={Col} controlId="formGridCpf">
                             <Form.Label>CPF</Form.Label>
-                            <Form.Control type="integer" placeholder="CPF">
-                            </Form.Control>
+                            <Form.Control type="integer" placeholder="CPF" value={cpf} onChange={handlerCpf}/>
                         </FormGroup>
 
                         <FormGroup as={Col} controlId="formGridCartao">
                             <Form.Label>Número Cartão</Form.Label>
-                            <Form.Control type="integer" placeholder="Número Cartão">
-                            </Form.Control>
+                            <Form.Control type="integer" placeholder="Número Cartão" value={cartao} onChange={handlerCartao}/>
                         </FormGroup>
                     </Row>
                 </div>
@@ -100,7 +161,7 @@ function Cadastro(){
             </div>
 
             <div className='btnCadastrar'>
-                <a href="#" class="btn btn-white btn-animate" >Cadastrar</a>      
+                <a href="#" class="btn btn-white btn-animate" onClick={registerUser}>Cadastrar</a>      
              </div>
              <br></br>
         </Form>
