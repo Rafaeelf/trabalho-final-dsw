@@ -3,6 +3,7 @@ import Card from "./Card";
 
 
 
+
 export default function Inicio(){
 
     return(
@@ -13,6 +14,7 @@ export default function Inicio(){
         <h1>Sucesso de venda</h1>
         <Card></Card>
         <br></br>
+        
         </>
     );
 
