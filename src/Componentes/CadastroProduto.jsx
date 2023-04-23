@@ -1,13 +1,33 @@
 import React, { useState } from "react";
-import { registerImageApi } from "../Api/Service";
+import { registerImageApi, registerProdutoApi } from "../Api/Service";
 import './CadastroProduto.css';
-import { MDBCardImage } from "mdb-react-ui-kit";
+import {MDBCard, MDBCardImage} from "mdb-react-ui-kit";
 
 export default function CadastroProdutos(){
     
+    const navigate = useNavigate()
     const [image, setImage] = useState('');
-    const [endImg,setEndImg] = useState('');
-    const [status, setStatus] = useState('');
+    const [endImg,setEndImage] = useState('./default.png');
+    const [descricao, setDescricao] = useState('');
+    const [valor, setValor] = useState('');
+    const [qtde, setQuantidade] = useState('');
+    const [tamanho, setTamanho] = useState('');
+
+    function handlerDescricao(event){
+        setDescricao(event.target.value);
+    }
+
+    function handlerValor(event){
+        setValor(event.target.value);
+    }
+    
+    function handlerTamanho(event){ 
+        setTamanho(event.target.id);
+    }
+    
+    function handlerQuantidade(event){ 
+        setQuantidade(event.target.value);
+    }
 
     const handleSubmitImage = async event => {
         event.preventDefault();
@@ -17,7 +37,7 @@ export default function CadastroProdutos(){
 
         await registerImageApi(formData)
         .then((response)=> {
-            console.log(response)
+            setEndImage(response.data);
         }).catch((erro) =>{
             if(erro.response){
                 console.log(erro.response);
@@ -25,18 +45,49 @@ export default function CadastroProdutos(){
                 console.log("erro: tente mais tarde!");
             }
         });
-       
+        
+        const produto = {
+            'descricao': descricao,
+            'foto':endImg,
+            'tamanho':tamanho,
+            'preco':valor,
+            'quantidade':qtde
+        }
+
+        registerProdutoApi(produto);
+        navigate(`/inicio`);
     }
 
     return (
         <div className="container">
-                <h1>Upload</h1>
-                <form onSubmit={handleSubmitImage}>                    
-                    <label>Imagem:</label>
-                     <input type="file" name="image" onChange={e=>setImage(e.target.files[0])}/><br/><br/>                     
-                     {image ? "":<MDBCardImage src='./default.png' alt='imagem' position='top' />}<br/><br/>
-                    <button type="submit">Salvar</button>
-                </form>
+            <h1>Upload</h1>
+            <form onSubmit={handleSubmitImage}>                    
+                <label>Imagem:</label>
+                <input type="file" name="image" onChange={e=>setImage(e.target.files[0])}/><br/><br/>   
+                <MDBCard>
+                    {image ? <MDBCardImage src={URL.createObjectURL(image)} position='top' alt='...' /> :
+                    <MDBCardImage src={endImg} position='top' alt='...' />}             
+                </MDBCard>
+                <label for="descricao">Descrição: </label>
+                 <input type="text" id="descricao" value={descricao} onChange={handlerDescricao}/><br/>
+                            
+                <label>Valor: </label>
+                <input type="number" value={valor} onChange={handlerValor}/><br/>
+                <label>Quantidade: </label>
+                <input type="number" value={qtde} onChange={handlerQuantidade}/><br/>
+                <label>Tamanho:</label><br/>
+                <input type="radio" class="btn-check" name="options" id="P" autocomplete="off" onClick={handlerTamanho}/>
+                <label class="btn btn-outline-primary" for="P">P</label>
+                <input type="radio" class="btn-check" name="options" id="M" autocomplete="off" onChange={handlerTamanho}/>
+                <label class="btn btn-outline-primary" for="M">M</label>
+                <input type="radio" class="btn-check" name="options" id="G" autocomplete="off" onChange={handlerTamanho}/>
+                <label class="btn btn-outline-primary" for="G">G</label>
+                <input type="radio" class="btn-check" name="options" id="GG" autocomplete="off" onChange={handlerTamanho}/>
+                <label class="btn btn-outline-primary" for="GG">GG</label>
+
+                <button type="submit">Salvar</button>
+            </form>
+                
         </div>
     )
 }

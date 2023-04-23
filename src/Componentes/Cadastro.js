@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 function Cadastro(){
 
-    const navigate = useNavigate()
-
+    const navigate = useNavigate();
+    
     const autCtx = useAutCtx();
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
