@@ -31,6 +31,11 @@ function Cabecalho(){
                                    <a>Produtos</a>
                                 </Link>
                             </li>
+                            <li className="nav=item">
+                                <Link className="nav-link" to = "/produtos/cadastro">
+                                   <a>Cadastrar Produtos</a>
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                     <div>
@@ -39,9 +44,13 @@ function Cabecalho(){
                                 {!foiAutenticado &&
                                 <Link className="nav-link" to="/login">Efetuar Login</Link>}
                             </li>
+                            <li class="nav-item">
+                                {!foiAutenticado &&
+                                <Link className="nav-link" to="/login">Efetuar Login</Link>}
+                            </li>
                             <li className="nav=item">
                                 {foiAutenticado &&
-                                <Link className="nav-link" to="/logout" onClick={sair}>Sair</Link>}
+                                <Link className="nav-link" to="/inicio" onClick={sair}>Sair</Link>}
                             </li>
                             <li class="nav-item">
                                 {foiAutenticado &&

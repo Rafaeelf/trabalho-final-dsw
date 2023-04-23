@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { autenticarApi, obterUserEmailApi } from "./Api/Service";
+import { Navigate } from "react-router-dom";
 
 export const AutCtx    = createContext();
 export const useAutCtx = () =>useContext(AutCtx);
@@ -29,6 +30,7 @@ export default function AutProvider({children}){
     function sair(){
         setAutenticado(false);
         setUsuario(null);
+        Navigate(`/inicio`);
     }
 
     function atualizaDadosCadastro(usuario){
