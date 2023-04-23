@@ -17,7 +17,7 @@ function Cabecalho(){
             <div className="container">
                 <div className="row">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">	
-                <img alt="logo" src="./img/logo.png" ></img>			 
+                <img alt="logo" src="./img/logo.png" ></img>	 
                     <a class="navbar-brand" href="#">DroneSeta</a>
                     <div className="collapse navbar-collapse">
                         <ul className="navbar-nav">

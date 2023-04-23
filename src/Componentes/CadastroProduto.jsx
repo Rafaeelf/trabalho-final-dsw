@@ -1,86 +1,42 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { registerImageApi } from "../Api/Service";
+import './CadastroProduto.css';
+import { MDBCardImage } from "mdb-react-ui-kit";
 
 export default function CadastroProdutos(){
-
-    const [descricao, setDescricao] = useState('');
-    const [valor, setValor] = useState('');
-    const [tamanhoP, setTamanhoP] = useState('');
-    const [tamanhoM, setTamanhoM] = useState('');
-    const [tamanhoG, setTamanhoG] = useState('');
-    const [tamanhoGG, setTamanhoGG] = useState('');
-    const [fileCamiseta, setSelectionFileCamiseta] = useState('');
-
-    function handlerDescricao(event){
-        setDescricao(event.target.value);
-    }
-
-    function handlerValor(event){
-        setValor(event.target.value);
-    }
     
-    function handlerTamanhoP(event){
-        setTamanhoP(event.target.value);
-    }
+    const [image, setImage] = useState('');
+    const [endImg,setEndImg] = useState('');
+    const [status, setStatus] = useState('');
 
-    function handlerTamanhoM(event){
-        setTamanhoM(event.target.value);
-    }
-
-    function handlerTamanhoG(event){
-        setTamanhoG(event.target.value);
-    }
-    
-    function handlerTamanhoGG(event){
-        setTamanhoGG(event.target.value);
-    }
-
-    const handleFileSelect = (event) =>{
-        console.log(event.target.files[0]);
-        setSelectionFileCamiseta(event.target.files[0])
-    }
-
-    const handleSubmit =async (event) =>{
-        console.log(event.target.file);
+    const handleSubmitImage = async event => {
         event.preventDefault();
-        const FormData = new FormData();
-        //FormData.append("file", selectedFile);
+
+        const formData = new FormData();
+        formData.append('file',image);
+
+        await registerImageApi(formData)
+        .then((response)=> {
+            console.log(response)
+        }).catch((erro) =>{
+            if(erro.response){
+                console.log(erro.response);
+            }else{
+                console.log("erro: tente mais tarde!");
+            }
+        });
+       
     }
 
     return (
         <div className="container">
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <fieldset>
-                    <form>
-                        <div class="form-group">
-                            <div className="card">
-                                <img class="card-img-top" src = "./img/camisaTeste.png"></img>
-                            </div>
-                            
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1" onChange={handleFileSelect}/><br/>
-
-                            <label for="descricao">Descrição: </label>
-                            <input type="text" id="descricao" value={descricao} onChange={handlerDescricao}/><br/>
-                            
-                            <label>Valor: </label>
-                            <input type="number" value={valor} onChange={handlerValor}/><br/>
-                            <label>Tamanho:</label><br/>
-                            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" value={tamanhoP} onChange={handlerTamanhoP}/>
-                            <label class="btn btn-outline-primary" for="option1">P</label>
-                            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" value={tamanhoM} onChange={handlerTamanhoM}/>
-                            <label class="btn btn-outline-primary" for="option2">M</label>
-                            <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" value={tamanhoG} onChange={handlerTamanhoG}/>
-                            <label class="btn btn-outline-primary" for="option3">G</label>
-                            <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off" value={tamanhoGG} onChange={handlerTamanhoGG}/>
-                            <label class="btn btn-outline-primary" for="option4">GG</label>
-                        </div>
-                    </form>
-                    </fieldset>
-                        
-                    <input type="submit" value="Enviar"/>
+                <h1>Upload</h1>
+                <form onSubmit={handleSubmitImage}>                    
+                    <label>Imagem:</label>
+                     <input type="file" name="image" onChange={e=>setImage(e.target.files[0])}/><br/><br/>                     
+                     {image ? "":<MDBCardImage src='./default.png' alt='imagem' position='top' />}<br/><br/>
+                    <button type="submit">Salvar</button>
                 </form>
-            </div>
-
         </div>
     )
 }
