@@ -1,12 +1,14 @@
-import { Form, Col, FormControl, FormGroup, Row } from "react-bootstrap";
+import { Form, Col, FormControl, FormGroup, Row} from "react-bootstrap";
 import './Cadastro.css';
 import { useState } from "react";
-import { registerUserApi } from "../Api/Service";
+import { registerEnderecoApi, registerUserApi } from "../Api/Service";
 import { useAutCtx } from "../autCtx";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Cadastro(){
 
+    const navigate = useNavigate();
+    
     const autCtx = useAutCtx();
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
@@ -24,7 +26,6 @@ function Cadastro(){
     
     function handlerNome(event){
         setNome(event.target.value);
-        console.log(event.target.value);
     }
 
     function handlerCpf(event){
@@ -33,6 +34,89 @@ function Cadastro(){
     
     function handlerCartao(event){
         setCartao(event.target.value);
+    }
+
+    const [ruaResi, setRuaResi] = useState('');
+    const [numResi, setNumResi] = useState('');
+    const [baiResi, setBaiResi] = useState('');
+    const [cidResi, setCidResi] = useState('');
+    const [cepResi, setCepResi] = useState('');
+    const [estResi, setEstResi] = useState('');
+    const [paiResi, setPaiResi] = useState('');
+    const [compResi, setCompResi] = useState('');
+
+    function handlerRuaResi(event){
+        setRuaResi(event.target.value);
+    }
+    
+    function handlerNumResi(event){
+        setNumResi(event.target.value);
+    }
+    
+    function handlerBaiResi(event){
+        setBaiResi(event.target.value);
+    }
+    
+    function handlerCidResi(event){
+        setCidResi(event.target.value);
+    }
+
+    function handlerCepResi(event){
+        setCepResi(event.target.value);
+    }
+    
+    function handlerEstResi(event){
+        setEstResi(event.target.value);
+    }
+
+    
+    function handlerPaiResi(event){
+        setPaiResi(event.target.value);
+    }
+    
+    function handlerCompResi(event){
+        setCompResi(event.target.value);
+    }
+    
+    const [ruaEnt, setRuaEnt] = useState('');
+    const [numEnt, setNumEnt] = useState('');
+    const [baiEnt, setBaiEnt] = useState('');
+    const [cidEnt, setCidEnt] = useState('');
+    const [cepEnt, setCepEnt] = useState('');
+    const [estEnt, setEstEnt] = useState('');
+    const [paiEnt, setPaiEnt] = useState('');
+    const [compEnt, setCompEnt] = useState('');
+
+    function handlerRuaEnt(event){
+        setRuaEnt(event.target.value);
+    }
+    
+    function handlerNumEnt(event){
+        setNumEnt(event.target.value);
+    }
+    
+    function handlerBaiEnt(event){
+        setBaiEnt(event.target.value);
+    }
+
+    function handlerCidEnt(event){
+        setCidEnt(event.target.value);
+    }
+
+    function handlerCepEnt(event){
+        setCepEnt(event.target.value);
+    }
+    
+    function handlerEstEnt(event){
+        setEstEnt(event.target.value);
+    }
+    
+    function handlerPaiEnt(event){
+        setPaiEnt(event.target.value);
+    }
+    
+    function handlerCompEnt(event){
+        setCompEnt(event.target.value);
     }
 
     async function registerUser(){
@@ -45,30 +129,50 @@ function Cadastro(){
         console.log(user);
         const resposta = await registerUserApi(user);
         const idInsert = resposta.data.id;
-        console.log(idInsert);
-        if (idInsert != null) {
+
+        if (idInsert != null) {            
+            cadastraEnderecoResidencial(idInsert);
+            cadastraEnderecoEntrega(idInsert);
             autCtx.atualizaDadosCadastro(idInsert);
-            Navigate(`/inicio`);
-            return true;
+            navigate(`/inicio`);
         } else {
             autCtx.setAutenticado(false);
             autCtx.setUsuario(null);
-            return false;
         }
     }
 
+    function cadastraEnderecoResidencial(usuario){
+        const endResid = {"bairro":baiResi,
+                          "cep":cepResi,
+                          "cidade":cidResi,
+                          "complemento":compResi,
+                          "estado":estResi,
+                          "numero":numResi,
+                          "pais":paiResi,
+                          "rua":ruaResi,
+                          "tipo":1,
+                          "usuario":usuario};
 
+        registerEnderecoApi(endResid);
+    }
 
-
-
-
-
-
-
+    function cadastraEnderecoEntrega(usuario){
+        const endEntre = {"bairro":baiEnt,
+                          "cep":cepEnt,
+                          "cidade":cidEnt,
+                          "complemento":compEnt,
+                          "estado":estEnt,
+                          "numero":numEnt,
+                          "pais":paiEnt,
+                          "rua":ruaEnt,
+                          "tipo":2,
+                          "usuario":usuario};
+        registerEnderecoApi(endEntre);
+    }
 
     return(
-
-        <Form>
+        
+        <Form>           
             <div className="dadosPessoais">
                 <div className="pessoa">
                     <h4>Dados Pessoais</h4>
@@ -86,7 +190,7 @@ function Cadastro(){
 
                     <FormGroup className="mb-2" controlId="formGridName">
                         <Form.Label>Nome Completo</Form.Label>
-                        <Form.Control placeholder="Nome Completo" value={nome} onChange={handlerNome}/>
+                        <Form.Control type="text" placeholder="Nome Completo" value={nome} onChange={handlerNome}/>
                         </FormGroup>
 
                     <Row className="mb-2">
@@ -117,46 +221,45 @@ function Cadastro(){
               <Row className="mb-2">
                         <FormGroup as={Col} controlId="formGridRua">
                             <Form.Label>Rua</Form.Label>
-                            <Form.Control type="text" placeholder="Rua">
-                            </Form.Control>
+                            <Form.Control type="text" placeholder="Rua" value={ruaResi} onChange={handlerRuaResi} />
                         </FormGroup>
 
                         <FormGroup as={Col} controlId="formGridNumero">
                             <Form.Label>Número</Form.Label>
-                            <Form.Control type="integer" placeholder="Número Casa ou Apt">
-                            </Form.Control>
+                            <Form.Control type="integer" placeholder="Número Casa ou Apt" value={numResi} onChange={handlerNumResi} />
                         </FormGroup>
                   </Row>
                   <Row className="mb-2">
                         <FormGroup as={Col} controlId="formGridBairro">
                             <Form.Label>Bairro</Form.Label>
-                            <Form.Control type="text" placeholder="Bairro">
-                            </Form.Control>
+                            <Form.Control type="text" placeholder="Bairro" value={baiResi} onChange={handlerBaiResi} />
+                        </FormGroup>
+
+                        <FormGroup as={Col} controlId="formGridCidade">
+                            <Form.Label>Cidade</Form.Label>
+                            <Form.Control type="text" placeholder="Cidade" value={cidResi} onChange={handlerCidResi} />
                         </FormGroup>
 
                         <FormGroup as={Col} controlId="formGridCEP">
                             <Form.Label>CEP</Form.Label>
-                            <Form.Control type="integer" placeholder="CEP">
-                            </Form.Control>
+                            <Form.Control type="integer" placeholder="CEP" value={cepResi} onChange={handlerCepResi} />
                         </FormGroup>
                   </Row>
                   <Row className="mb-2">
                         <FormGroup as={Col} controlId="formGridEstado">
                             <Form.Label>Estado</Form.Label>
-                            <Form.Control type="text" placeholder="Estado">
-                            </Form.Control>
+                            <Form.Control type="text" placeholder="Estado" value={estResi} onChange={handlerEstResi} />
                         </FormGroup>
 
                         <FormGroup as={Col} controlId="formGridPais">
                             <Form.Label>País</Form.Label>
-                            <Form.Control type="integer" placeholder="País">
-                            </Form.Control>
+                            <Form.Control type="integer" placeholder="País" value={paiResi} onChange={handlerPaiResi} />
                         </FormGroup>
                   </Row>
 
                   <FormGroup className="mb-2" controlId="formGridComplemento">
                         <Form.Label>Complemento</Form.Label>
-                        <Form.Control placeholder="Complemento ou referencias" />
+                        <Form.Control placeholder="Complemento ou referencias" value={compResi} onChange={handlerCompResi}/>
                     </FormGroup>
             </div>
 
@@ -169,53 +272,53 @@ function Cadastro(){
               <Row className="mb-2">
                         <FormGroup as={Col} controlId="formGridRua">
                             <Form.Label>Rua</Form.Label>
-                            <Form.Control type="text" placeholder="Rua">
-                            </Form.Control>
+                            <Form.Control type="text" placeholder="Rua" value={ruaEnt} onChange={handlerRuaEnt}/>
                         </FormGroup>
 
                         <FormGroup as={Col} controlId="formGridNumero">
                             <Form.Label>Número</Form.Label>
-                            <Form.Control type="integer" placeholder="Número Casa ou Apt">
-                            </Form.Control>
+                            <Form.Control type="integer" placeholder="Número Casa ou Apt" value={numEnt} onChange={handlerNumEnt}/>
                         </FormGroup>
                   </Row>
                   <Row className="mb-2">
                         <FormGroup as={Col} controlId="formGridBairro">
                             <Form.Label>Bairro</Form.Label>
-                            <Form.Control type="text" placeholder="Bairro">
-                            </Form.Control>
+                            <Form.Control type="text" placeholder="Bairro" value={baiEnt} onChange={handlerBaiEnt}/>
+                        </FormGroup>
+
+                        
+                        <FormGroup as={Col} controlId="formGridCidade">
+                            <Form.Label>Cidade</Form.Label>
+                            <Form.Control type="text" placeholder="Cidade" value={cidEnt} onChange={handlerCidEnt} />
                         </FormGroup>
 
                         <FormGroup as={Col} controlId="formGridCEP">
                             <Form.Label>CEP</Form.Label>
-                            <Form.Control type="integer" placeholder="CEP">
-                            </Form.Control>
+                            <Form.Control type="integer" placeholder="CEP" value={cepEnt} onChange={handlerCepEnt}/>
                         </FormGroup>
                   </Row>
                   <Row className="mb-2">
                         <FormGroup as={Col} controlId="formGridEstado">
                             <Form.Label>Estado</Form.Label>
-                            <Form.Control type="text" placeholder="Estado">
-                            </Form.Control>
+                            <Form.Control type="text" placeholder="Estado" value={estEnt} onChange={handlerEstEnt}/>
                         </FormGroup>
 
                         <FormGroup as={Col} controlId="formGridPais">
                             <Form.Label>País</Form.Label>
-                            <Form.Control type="integer" placeholder="País">
-                            </Form.Control>
+                            <Form.Control type="integer" placeholder="País" value={paiEnt} onChange={handlerPaiEnt}/>
                         </FormGroup>
                   </Row>
 
                   <FormGroup className="mb-2" controlId="formGridComplemento">
                         <Form.Label>Complemento</Form.Label>
-                        <Form.Control placeholder="Complemento ou referencias" />
+                        <Form.Control placeholder="Complemento ou referencias" value={compEnt} onChange={handlerCompEnt}/>
                     </FormGroup>
             </div>
 
             <div className='btnCadastrar'>
                 <a href="#" class="btn btn-white btn-animate" onClick={registerUser}>Cadastrar</a>      
-             </div>
-             <br></br>
+            </div>
+            <br></br>
         </Form>
     );
 }
