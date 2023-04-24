@@ -11,6 +11,7 @@ import AutProvider, { useAutCtx } from "./autCtx";
 import { BrowserRouter, Navigate, Routes, Route} from "react-router-dom"
 import Inicio from "./Componentes/Inicio";
 import CadastroProdutos from "./Componentes/CadastroProduto";
+import ProdutoDetalhes from "./Componentes/ProdutoDetalhes";
 
 
 function HomePage(){
@@ -37,13 +38,15 @@ function HomePage(){
                         <Route path='/cadastro' element={<Cadastro />}></Route>
                         <Route path='/produtos' element={<Produto />}></Route>
                         <Route path='/produtos/cadastro' element={<CadastroProdutos />}></Route>
+                        <Route path='/carrinho' element={<Carrinho />}></Route>
 
-                        <Route path='/carrinho' element={
+                        <Route path='/produtoDetalhes' element={<ProdutoDetalhes />}></Route>
+
+                        {/* <Route path='/carrinho' element={
                         <AuthenticateRoute>
                             <Carrinho />
                         </AuthenticateRoute>}>
-                        
-                         </Route>
+                        </Route> */}
 
                     </Routes>                    
                 </BrowserRouter>
