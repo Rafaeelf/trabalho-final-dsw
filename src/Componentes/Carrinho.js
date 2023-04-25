@@ -128,7 +128,11 @@ export default function Carrinho() {
               <p class="total-amount">R$15,87</p>
             </div>
 
-            <button>Finalizar Compra</button>
+            <div className="btnFinalizar">
+            <a href="#" class="btn btn-white ">
+                Finalizar
+              </a>
+            </div>
           </footer>
         </div>
       </div>
