@@ -1,4 +1,5 @@
 import "./Carrinho.css";
+import React from 'react';
 
 export default function Carrinho() {
   return (

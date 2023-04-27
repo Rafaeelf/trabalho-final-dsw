@@ -1,15 +1,12 @@
-import Card from "./Card";
+
 import Produtos from "./Produtos";
+import React from 'react';
 
 export default function Produto(){
 
     return(
        <> <Produtos></Produtos>
-
-       <Card></Card>
-       
-       <h1>Teste</h1>
-       
+ 
        </> 
 
         
