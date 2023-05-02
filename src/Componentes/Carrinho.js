@@ -130,7 +130,7 @@ export default function Carrinho() {
             </div>
 
             <div className="btnFinalizar">
-            <a href="#" class="btn btn-white ">
+              <a href="#" class="btn btn-white ">
                 Finalizar
               </a>
             </div>

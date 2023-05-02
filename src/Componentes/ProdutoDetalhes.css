@@ -3,6 +3,7 @@
   margin-top: 20px;
   align-items: center;
 }
+
 .card-right {
   float: left;
   margin-top: 10px;
@@ -11,9 +12,11 @@
 button::-moz-focus-inner {
   border: 50;
 }
+
 .btn-size::-moz-focus-inner {
   border: 0;
 }
+
 .item-size-text {
   color: #000000;
   font-size: smaller;
@@ -51,5 +54,3 @@ button::-moz-focus-inner {
   border: 4px solid #5101e6;
   outline: 0;
 }
-
-
