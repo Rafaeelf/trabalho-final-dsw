@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { registerImageApi, registerProdutoApi } from "../Api/Service";
 import './CadastroProduto.css';
 import {MDBCard, MDBCardImage} from "mdb-react-ui-kit";
+import { useNavigate } from "react-router-dom";
 
 export default function CadastroProdutos(){
     

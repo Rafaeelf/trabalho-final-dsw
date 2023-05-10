@@ -44,10 +44,6 @@ function Cabecalho(){
                                 {!foiAutenticado &&
                                 <Link className="nav-link" to="/login">Efetuar Login</Link>}
                             </li>
-                            <li class="nav-item">
-                                {!foiAutenticado &&
-                                <Link className="nav-link" to="/login">Efetuar Login</Link>}
-                            </li>
                             <li className="nav=item">
                                 {foiAutenticado &&
                                 <Link className="nav-link" to="/inicio" onClick={sair}>Sair</Link>}
