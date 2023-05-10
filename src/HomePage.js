@@ -11,6 +11,7 @@ import { BrowserRouter, Navigate, Routes, Route} from "react-router-dom"
 import Inicio from "./Componentes/Inicio";
 import CadastroProdutos from "./Componentes/CadastroProduto";
 import ProdutoDetalhes from "./Componentes/ProdutoDetalhes";
+import Administrador from "./Componentes/Administrador";
 
 
 function HomePage(){
@@ -40,6 +41,7 @@ function HomePage(){
                         <Route path='/carrinho' element={<Carrinho />}></Route>
 
                         <Route path='/produtoDetalhes' element={<ProdutoDetalhes />}></Route>
+                        <Route path='/administrador' element={<Administrador />}></Route>
 
                         {/* <Route path='/carrinho' element={
                         <AuthenticateRoute>

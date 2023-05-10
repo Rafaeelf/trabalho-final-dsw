@@ -47,6 +47,12 @@ function Cabecalho() {
                   </Link>
                 )}
               </li>
+
+                  <li class="nav-item">
+                    {!foiAutenticado }
+
+                  </li>
+
               <li class="nav-item">
                 {!foiAutenticado && (
                   <Link className="nav-link" to="/login">
