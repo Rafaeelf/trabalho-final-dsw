@@ -26,8 +26,9 @@ export default function Rodape(){
                         Ajuda
                     </h5>
                     <a href='#'>
-                        Contato:
+                        Contato: 
                     </a>
+                    <p>(47)9.9988-7700</p>
                 </div>
                 <div className="pagamento">
                     <h5>
