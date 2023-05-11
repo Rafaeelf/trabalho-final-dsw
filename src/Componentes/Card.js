@@ -35,11 +35,8 @@ export default function Card() {
               <div class="card-body">
                 <h5>{produto.descricao}</h5>
                 <p class="card-text"> R$ {produto.preco} </p>
-                <button
-                  className="btn btn-success mb-3"
-                  onClick={() => visualizarTarefa(produto.id)}
-                >
-                  Ver +{" "}
+                <button className="btn btn-success mb-3"  onClick={() => visualizarTarefa(produto.id)}>
+                  Ver +
                 </button>
               </div>
             </div>
