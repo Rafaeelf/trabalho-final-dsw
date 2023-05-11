@@ -41,6 +41,7 @@ function HomePage(){
                         <Route path='/carrinho' element={<Carrinho />}></Route>
 
                         <Route path='/produtodetalhes' element={<ProdutoDetalhes />}></Route>
+                        <Route path='/produtoDetalhes/:id' element={<ProdutoDetalhes />}></Route>
                         <Route path='/administrador' element={<Administrador />}></Route>
 
                         { <Route path='/carrinho' element={

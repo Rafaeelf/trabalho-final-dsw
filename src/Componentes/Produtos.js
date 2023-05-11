@@ -1,80 +1,46 @@
-import './Produtos.css';
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import "./Produtos.css";
+import { useNavigate } from "react-router-dom";
+import { obterProdutosApi } from "../Api/Service";
 
 export default function Produtos() {
+  const [produtos, setProdutos] = useState([]);
+  const navigate = useNavigate();
 
-  return(
+  useEffect(() => atualizarProdutos());
 
+  function atualizarProdutos() {
+    obterProdutosApi()
+      .then((resposta) => {
+        setProdutos(resposta.data);
+      })
+
+      .catch((erro) => console.log(erro));
+  }
+
+  function visualizarTarefa(id) {
+    console.log(id);
+    navigate(`/produtoDetalhes/${id}`);
+  }
+
+  return (
     <div class="container">
-      <div class="row">
-
-          <div class="col">
-            <div className="card">
-              <img class="card-img-top" src = "./img/camisaNirvana.jpg"></img>
-                <div class="card-body">
-                        <h5>Camisa Nirvana</h5>
-                        <p class="card-text"> R$ 99,90 </p>
-                        <Link className="nav-link" to="/produtoDetalhes">
-                          <a href="#" class="btn btn-primary">Comprar</a>
-                        </Link>
-                </div>
-              </div>
-          </div>
-
-
-          <div class="col">
-            <div className="card">
-              <img class="card-img-top" src = "./img/camisaNirvana.jpg"></img>
-                <div class="card-body">
-                        <h5>Camisa Nirvana</h5>
-                        <p class="card-text"> R$ 99,90 </p>
-                        <Link className="nav-link" to="/produtoDetalhes">
-                          <a href="#" class="btn btn-primary">Comprar</a>
-                        </Link>
-                </div>
-              </div>
-          </div>
-
-          <div class="col">
-            <div className="card">
-              <img class="card-img-top" src = "./img/camisaNirvana.jpg"></img>
-                <div class="card-body">
-                        <h5>Camisa Nirvana</h5>
-                        <p class="card-text"> R$ 99,90 </p>
-                        <Link className="nav-link" to="/produtoDetalhes">
-                          <a href="#" class="btn btn-primary">Comprar</a>
-                        </Link>
-                </div>
-              </div>
-          </div>
-
-          <div class="col">
-            <div className="card">
-              <img class="card-img-top" src = "./img/camisaNirvana.jpg"></img>
-                <div class="card-body">
-                        <h5>Camisa Nirvana</h5>
-                        <p class="card-text"> R$ 99,90 </p>
-                        <Link className="nav-link" to="/produtoDetalhes">
-                          <a href="#" class="btn btn-primary">Comprar</a>
-                        </Link>
-                </div>
-              </div>
-          </div>
-
-          <div class="col">
-            <div className="card">
-              <img class="card-img-top" src = "./img/camisaNirvana.jpg"></img>
-                <div class="card-body">
-                        <h5>Camisa Nirvana</h5>
-                        <p class="card-text"> R$ 99,90 </p>
-                        <Link className="nav-link" to="/produtoDetalhes">
-                          <a href="#" class="btn btn-primary">Comprar</a>
-                        </Link>
-                </div>
-              </div>
-          </div>
-
-        </div>    
+      <table className="table">
+        
+        <tbody>
+          {produtos.map((produto) => (
+            <tr key={produto.id}>
+              <td><img class="card-img-top" src="./img/camisaTeste.png"></img></td>
+              <td>{produto.descricao}</td>
+              <td>{produto.tamanho}</td>
+              <td>{produto.preço}</td>
+              <td>
+                <button className="btn btn-success mb-3" onClick={() => visualizarTarefa(produto.id)}> Ver + </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

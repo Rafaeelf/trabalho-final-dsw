@@ -17,3 +17,7 @@ export const obterUserEmailApi = (email) => clienteApi.get(`/usuario/${email}`);
 
 export const registerImageApi = (image) => clienteApi.post(`/files`,image, configImage);
 export const registerProdutoApi = (produto) => clienteApi.post(`/products`,produto);
+
+export const obterSucessoProduto = () => clienteApi.get(`/sucessos`);
+export const obterProdutoApi = (id) => clienteApi.get(`/products/${id}`);
+export const obterProdutosApi = () => clienteApi.get(`/products`);

@@ -1,9 +1,6 @@
 import Carrossel from "./Carrossel";
 import Card from "./Card";
 
-
-
-
 export default function Inicio(){
 
     return(

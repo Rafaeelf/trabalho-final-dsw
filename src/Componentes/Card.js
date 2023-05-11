@@ -1,72 +1,51 @@
+import { useState } from "react";
 import "./Card.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { obterSucessoProduto } from "../Api/Service";
 
 export default function Card() {
-    return (
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div className="card">
-                        <img class="card-img-top" src="./img/camisaTeste.png"></img>
+  const [produtos, setProdutos] = useState([]);
+  const navigate = useNavigate();
 
-                        <div class="card-body">
-                            <h5>Camisa Vermelha Estampada</h5>
-                            <p class="card-text"> R$ 50,00 Reais </p>
-                            <Link className="nav-link" to="/produtoDetalhes">
-                                <a href="#" class="btn btn-primary">
-                                    Visitar Produto
-                                </a>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div className="card">
-                        <img class="card-img-top" src="./img/camisaTeste.png"></img>
+  useEffect(() => atualizarProdutos());
 
-                        <div class="card-body">
-                            <h5>Camisa Vermelha Estampada</h5>
-                            <p class="card-text"> R$ 50,00 Reais </p>
-                            <Link className="nav-link" to="/produtoDetalhes">
-                                <a href="#" class="btn btn-primary">
-                                    Visitar Produto
-                                </a>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div className="card">
-                        <img class="card-img-top" src="./img/camisaTeste.png"></img>
+  function atualizarProdutos() {
+    obterSucessoProduto()
+      .then((resposta) => {
+        setProdutos(resposta.data);
+      })
 
-                        <div class="card-body">
-                            <h5>Camisa Vermelha Estampada</h5>
-                            <p class="card-text"> R$ 50,00 Reais </p>
-                            <Link className="nav-link" to="/produtoDetalhes">
-                                <a href="#" class="btn btn-primary">
-                                    Visitar Produto
-                                </a>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div className="card">
-                        <img class="card-img-top" src="./img/camisaTeste.png"></img>
+      .catch((erro) => console.log(erro));
+  }
 
-                        <div class="card-body">
-                            <h5>Camisa Vermelha Estampada</h5>
-                            <p class="card-text"> R$ 50,00 Reais </p>
-                            <Link className="nav-link" to="/produtoDetalhes">
-                                <a href="#" class="btn btn-primary">
-                                    Visitar Produto
-                                </a>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
+  function visualizarTarefa(id) {
+    console.log(id);
+    navigate(`/produtoDetalhes/${id}`);
+  }
 
+  return (
+    <div className="container">
+      <div class="row">
+        {produtos.map((produto) => (
+          <div class="col">
+            <div className="card">
+              <img class="card-img-top" src="./img/camisaNirvana.jpg"></img>
+
+              <div class="card-body">
+                <h5>{produto.descricao}</h5>
+                <p class="card-text"> R$ {produto.preco} </p>
+                <button
+                  className="btn btn-success mb-3"
+                  onClick={() => visualizarTarefa(produto.id)}
+                >
+                  Ver +{" "}
+                </button>
+              </div>
             </div>
-        </div>
-    );
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
