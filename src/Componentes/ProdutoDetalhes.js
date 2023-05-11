@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { obterProdutoApi } from "../Api/Service";
 import "./ProdutoDetalhes.css";
 import React, { useEffect, useState } from "react";
+import Card from "./Card";
 
 export default function ProdutoDetalhes() {
   const { id } = useParams();
@@ -23,7 +24,7 @@ export default function ProdutoDetalhes() {
   function carregaDados(resposta) {
     setDescricao(resposta.data.descricao);
     setPreco(resposta.data.preco);
-    setFoto("./img/"+resposta.data.foto);
+    setFoto("./img/" + resposta.data.foto);
     setQuantidade(resposta.data.quantidade);
     setTamanho(resposta.data.tamanho);
   }
@@ -32,7 +33,7 @@ export default function ProdutoDetalhes() {
       <div class="row">
         <div class="col">
           <div className="card">
-            <img class="card-img-top" src={foto} title="image"/>
+            <img class="card-img-top" src={foto} title="image" />
           </div>
         </div>
         <div class="col">
@@ -57,6 +58,12 @@ export default function ProdutoDetalhes() {
             </div>
           </div>
         </div>
+      </div>
+      <br></br>
+      <br></br>
+      <div class="row">
+        <h1>Sucesso de venda</h1>
+        <Card></Card>
       </div>
     </div>
   );
