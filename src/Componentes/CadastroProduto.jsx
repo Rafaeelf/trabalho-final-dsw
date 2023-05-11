@@ -5,7 +5,7 @@ import {MDBCard, MDBCardImage} from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
 
 function CadastroProdutos() {
-    const navigate = navigate();
+    const navigate = useNavigate();
     const [image, setImage] = useState("");
     const [endImg, setEndImage] = useState("./default.png");
     const [descricao, setDescricao] = useState("");

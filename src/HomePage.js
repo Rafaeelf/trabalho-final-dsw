@@ -37,7 +37,7 @@ function HomePage(){
                         <Route path='/login' element={<Login />}></Route>
                         <Route path='/cadastro' element={<Cadastro />}></Route>
                         <Route path='/produtos' element={<Produto />}></Route>
-                        <Route path='/cadastroprodutos' element={<CadastroProdutos />}></Route>
+                        <Route path='/produtos/cadastro' element={<CadastroProdutos />}></Route>
                         <Route path='/carrinho' element={<Carrinho />}></Route>
 
                         <Route path='/produtodetalhes' element={<ProdutoDetalhes />}></Route>
