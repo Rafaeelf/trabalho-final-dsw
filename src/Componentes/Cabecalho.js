@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import "./Cabecalho.css";
-import { AutCtx, useAutCtx } from "../autCtx";
+import { useAutCtx } from "../autCtx";
 
 function Cabecalho() {
   const autCtx = useAutCtx();
@@ -48,10 +48,7 @@ function Cabecalho() {
                 )}
               </li>
 
-                  <li class="nav-item">
-                    {!foiAutenticado }
-
-                  </li>
+              <li class="nav-item">{!foiAutenticado}</li>
 
               <li class="nav-item">
                 {!foiAutenticado && (

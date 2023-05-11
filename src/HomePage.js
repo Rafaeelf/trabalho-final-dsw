@@ -37,17 +37,17 @@ function HomePage(){
                         <Route path='/login' element={<Login />}></Route>
                         <Route path='/cadastro' element={<Cadastro />}></Route>
                         <Route path='/produtos' element={<Produto />}></Route>
-                        <Route path='/produtos/cadastro' element={<CadastroProdutos />}></Route>
+                        <Route path='/cadastroprodutos' element={<CadastroProdutos />}></Route>
                         <Route path='/carrinho' element={<Carrinho />}></Route>
 
-                        <Route path='/produtoDetalhes' element={<ProdutoDetalhes />}></Route>
+                        <Route path='/produtodetalhes' element={<ProdutoDetalhes />}></Route>
                         <Route path='/administrador' element={<Administrador />}></Route>
 
-                        {/* <Route path='/carrinho' element={
+                        { <Route path='/carrinho' element={
                         <AuthenticateRoute>
                             <Carrinho />
                         </AuthenticateRoute>}>
-                        </Route> */}
+                        </Route> }
 
                     </Routes>                    
                 </BrowserRouter>
