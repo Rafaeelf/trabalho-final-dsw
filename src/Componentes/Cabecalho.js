@@ -6,6 +6,7 @@ import { useAutCtx } from "../autCtx";
 function Cabecalho() {
   const autCtx = useAutCtx();
   const foiAutenticado = autCtx.autenticado;
+  const tipoUsuario = autCtx.tipo;
 
   function sair() {
     autCtx.sair();
@@ -33,9 +34,9 @@ function Cabecalho() {
                   </Link>
                 </li>
                 <li className="nav=item">
-                  {foiAutenticado && (
-                    <Link className="nav-link" to="/produtos/cadastro">
-                      <a>Cadastrar Produtos</a>
+                  {foiAutenticado && tipoUsuario && (
+                    <Link className="nav-link" to="/administrador">
+                      <a>Adminstrador</a>
                     </Link>
                   )}
                 </li>
@@ -61,6 +62,13 @@ function Cabecalho() {
                   {foiAutenticado && (
                     <Link className="nav-link" to="/carrinho">
                       Carrinho
+                    </Link>
+                  )}
+                </li>
+                <li class="nav-item">
+                  {foiAutenticado && (
+                    <Link className="nav-link" to="/compras">
+                      Compras
                     </Link>
                   )}
                 </li>

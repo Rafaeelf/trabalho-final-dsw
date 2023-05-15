@@ -8,6 +8,7 @@ export const useAutCtx = () =>useContext(AutCtx);
 export default function AutProvider({children}){
     const [autenticado, setAutenticado] = useState(false);
     const[usuario,setUsuario] = useState(null);
+    const[tipo,setAdministrador] = useState(false);
 
     async function autenticar(usuario,senha){              
         const credencial = {"userEmail": usuario, "senha":senha};
@@ -17,6 +18,12 @@ export default function AutProvider({children}){
         if (foiAutenticado) {
             const user = obterUserEmailApi(credencial.userEmail);
             const id = (await user).data.id;
+            const tipoUser = (await user).data.tipo;
+            if(tipoUser === 2){
+                setAdministrador(true);
+            } else {
+                setAdministrador(false);
+            }            
             setUsuario(id);
             setAutenticado(true);            
             return true;
@@ -39,7 +46,7 @@ export default function AutProvider({children}){
     }
 
     return (
-        <AutCtx.Provider value={{autenticado, autenticar, sair, usuario, atualizaDadosCadastro}}>
+        <AutCtx.Provider value={{autenticado, autenticar, sair, usuario, atualizaDadosCadastro,tipo}}>
             {children}
         </AutCtx.Provider>
     )
