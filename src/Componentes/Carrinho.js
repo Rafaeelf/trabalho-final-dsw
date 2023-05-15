@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { aumentaQuantidadeCarrinhoApi, diminuiQuantidadeCarrinhoApi, obterCarrinhoUserApi, removeItemCarrinhoApi } from "../Api/Service";
+import { aumentaQuantidadeCarrinhoApi, criaPedidoApi, diminuiQuantidadeCarrinhoApi, obterCarrinhoUserApi, removeItemCarrinhoApi } from "../Api/Service";
 import { useAutCtx } from "../autCtx";
 import "./Carrinho.css";
 import React, { useEffect } from "react";
 import { FaTrashAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function Carrinho() {
 
@@ -13,6 +14,7 @@ export default function Carrinho() {
   const [total,setTotal] = useState(null);
   const [taxa,setTaxa] = useState(null);
   const [temRegistro,setTemRegistro] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => atualizarCarrinho());
 
@@ -49,6 +51,28 @@ export default function Carrinho() {
   function aumentaQuantidadeCarrinho(id){
     aumentaQuantidadeCarrinhoApi(id);
   }
+
+  const handleSubmitImage = async (event) => {
+    event.preventDefault();
+
+    const pedido = {
+      usuario: usuario,
+      dataPedido: new Date().toLocaleString()
+    }
+    console.log(pedido);
+    await criaPedidoApi(pedido)
+    .then((response) => {
+      navigate(`/inicio`);
+    })
+    .catch((erro)=> {
+      if (erro.response) {
+        console.log("Entrou Aqui");
+        console.log(erro.response);
+      } else {
+        console.log("erro: tente mais tarde!");
+      }
+    });
+  };
 
   return (
     <body>
@@ -112,9 +136,7 @@ export default function Carrinho() {
               <p class="total-amount">R${total + taxa}</p>
             </div>
             <div className="btnFinalizar">
-              <a href="#" class="btn btn-white ">
-                Finalizar
-              </a>
+              <button class="btn btn-white" onClick={handleSubmitImage}>Finalizar</button>
             </div>
           </footer>
         </div>

@@ -31,3 +31,5 @@ export const removeItemCarrinhoApi = (id) => clienteApi.delete(`/carrinho/${id}`
 export const diminuiQuantidadeCarrinhoApi = (id) => clienteApi.put(`/carrinho/${id}/diminui`);
 export const aumentaQuantidadeCarrinhoApi = (id) => clienteApi.put(`/carrinho/${id}/aumenta`);
 
+export const criaPedidoApi = (pedido) => clienteApi.post(`/pedidos`, pedido);
+
