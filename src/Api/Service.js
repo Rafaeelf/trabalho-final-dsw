@@ -22,3 +22,6 @@ export const obterSucessoProduto = () => clienteApi.get(`/sucessos`);
 export const obterProdutoApi = (id) => clienteApi.get(`/products/${id}`);
 export const obterProdutosApi = () => clienteApi.get(`/products`);
 export const obterPedidosUsuarioApi = (id) => clienteApi.get(`/pedidouser/${id}`);
+
+export const obterProdutoPedidoApi = (id) => clienteApi.get(`/pedidos/${id}/product`);
+

@@ -16,7 +16,6 @@ export default function Compra() {
     function atualizarPedidos() {
         obterPedidosUsuarioApi(user)
           .then((resposta) => {
-            console.log(resposta);
             setPedidos(resposta.data);
           })    
           .catch((erro) => console.log(erro));

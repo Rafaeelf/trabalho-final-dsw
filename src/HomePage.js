@@ -12,6 +12,7 @@ import CadastroProdutos from "./Componentes/CadastroProduto";
 import ProdutoDetalhes from "./Componentes/ProdutoDetalhes";
 import Administrador from "./Componentes/Administrador";
 import Compra from "./Componentes/Compra";
+import PedidoDetalhe from "./Componentes/PedidoDetalhe";
 
 function HomePage() {
   function AuthenticateRoute({ children }) {
@@ -36,7 +37,8 @@ function HomePage() {
             <Route path="/produtos/cadastro" element={<CadastroProdutos />}></Route>
             <Route path="/carrinho" element={<Carrinho />}></Route>
             <Route path="/produtodetalhes" element={<ProdutoDetalhes />}></Route>
-            <Route path="/produtoDetalhes/:id" element={<ProdutoDetalhes />}></Route>            
+            <Route path="/produtoDetalhes/:id" element={<ProdutoDetalhes />}></Route>   
+            <Route path="/pedidoDetalhes/:id" element={<PedidoDetalhe/>}></Route>           
             {<Route path="/administrador" element={
                 <AuthenticateRoute>
                     <Administrador />
