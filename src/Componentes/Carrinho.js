@@ -1,7 +1,55 @@
+import { useState } from "react";
+import { aumentaQuantidadeCarrinhoApi, diminuiQuantidadeCarrinhoApi, obterCarrinhoUserApi, removeItemCarrinhoApi } from "../Api/Service";
+import { useAutCtx } from "../autCtx";
 import "./Carrinho.css";
-import React from 'react';
+import React, { useEffect } from "react";
+import { FaTrashAlt } from "react-icons/fa";
 
 export default function Carrinho() {
+
+  const autCtx = useAutCtx();
+  const usuario = autCtx.usuario;
+  const [produtos, setProdutos] = useState([]);
+  const [total,setTotal] = useState(null);
+  const [taxa,setTaxa] = useState(null);
+  const [temRegistro,setTemRegistro] = useState(false);
+
+  useEffect(() => atualizarCarrinho());
+
+  function atualizarCarrinho() {        
+    obterCarrinhoUserApi(usuario)
+    .then((resposta)=>{
+      setProdutos(resposta.data);
+    })
+    .catch();
+    if(produtos.length > 0){
+      var cont = 0;
+      var valTaxa = 0;
+      produtos.map((produtoPed) => (
+          cont = cont + (produtoPed.quantidade * produtoPed.produto.preco),
+          valTaxa ++
+      ));
+      setTotal(cont);
+      setTaxa(valTaxa);
+      setTemRegistro(true);
+    }else {
+      setTemRegistro(false);
+    }
+    
+  }
+
+  function removeItemCarrinho(id){
+    removeItemCarrinhoApi(id);
+  }
+
+  function diminuiQuantidadeCarrinho(id){
+    diminuiQuantidadeCarrinhoApi(id);
+  }
+  
+  function aumentaQuantidadeCarrinho(id){
+    aumentaQuantidadeCarrinhoApi(id);
+  }
+
   return (
     <body>
       <div class="container">
@@ -9,126 +57,60 @@ export default function Carrinho() {
           <header>
             <h3>Carrinho de Compras</h3>
           </header>
-
           <div class="cart-body">
-            <div class="cart-item">
-              <div class="cart-row">
-                <div class="cart-row-cell pic">
-                  <a href="#">-</a>
-
-                  <span></span>
-                </div>
-
-                <div class="cart-row-cell desc">
-                  <h5>Camisa</h5>
-
-                  <p>#41345755</p>
-                </div>
-
-                <div class="cart-row-cell quant">
-                  <ul>
-                    <li>
-                      <a href="#">-</a>
-                    </li>
-
-                    <li>2</li>
-
-                    <li>
-                      <a href="#">+</a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="cart-row-cell amount">
-                  <p>R$13,87</p>
-                </div>
-              </div>
-
-              <div class="cart-row">
-                <div class="cart-row-cell pic">
-                  <a href="#">-</a>
-
-                  <span></span>
-                </div>
-
-                <div class="cart-row-cell desc">
-                  <h5>Camisa</h5>
-
-                  <p>#41345755</p>
-                </div>
-
-                <div class="cart-row-cell quant">
-                  <ul>
-                    <li>
-                      <a href="#">-</a>
-                    </li>
-
-                    <li>2</li>
-
-                    <li>
-                      <a href="#">+</a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="cart-row-cell amount">
-                  <p>R$13,87</p>
-                </div>
-              </div>
-
-              <div class="cart-row">
-                <div class="cart-row-cell pic">
-                  <a href="#">-</a>
-
-                  <span></span>
-                </div>
-
-                <div class="cart-row-cell desc">
-                  <h5>Camisa</h5>
-
-                  <p>#41345755</p>
-                </div>
-
-                <div class="cart-row-cell quant">
-                  <ul>
-                    <li>
-                      <a href="#">-</a>
-                    </li>
-
-                    <li>2</li>
-
-                    <li>
-                      <a href="#">+</a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="cart-row-cell amount">
-                  <p>R$13,87</p>
-                </div>
-              </div>
-            </div>
+            <table className="table">
+              {temRegistro && (produtos.map((produtoPed) => (
+                <tr key={produtoPed.id}>
+                  <td>
+                    <div class="cart-item">
+                      <div class="cart-row">                        
+                        <div class="cart-row-cell desc">
+                          <h5>{produtoPed.produto.descricao}</h5>
+                          <p>Tamanho: {produtoPed.produto.tamanho}</p>
+                        </div>
+                        <div class="cart-row-cell quant">
+                          <ul>
+                            <li>
+                              <button onClick={() => diminuiQuantidadeCarrinho(produtoPed.id)}>-</button>                              
+                            </li>
+                            <li>{produtoPed.quantidade}</li>
+                            <li>
+                              <button onClick={() => aumentaQuantidadeCarrinho(produtoPed.id)}>+</button>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="cart-row-cell amount">
+                          <p>R${produtoPed.produto.preco * produtoPed.quantidade}</p>
+                        </div>
+                        <div class="cart-row-cell pic">
+                          <button className="btn btn-danger mb-3" onClick={() => removeItemCarrinho(produtoPed.id)}><FaTrashAlt/></button>
+                          <span></span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              )))}
+              {!temRegistro && (
+                <p>Carrinho Vazio!</p>
+              )}
+            </table>
           </div>
 
           <footer>
             <div class="totals">
               <p class="total-label">Subtotal</p>
-
-              <p class="total-amount">R$13,87</p>
+              <p class="total-amount">R${total}</p>
             </div>
 
             <div class="totals">
               <p class="total-label">Taxa</p>
-
-              <p class="total-amount">R$2,00</p>
+              <p class="total-amount">R${taxa}</p>
             </div>
-
             <div class="totals">
               <p class="total-label">Total</p>
-
-              <p class="total-amount">R$15,87</p>
+              <p class="total-amount">R${total + taxa}</p>
             </div>
-
             <div className="btnFinalizar">
               <a href="#" class="btn btn-white ">
                 Finalizar

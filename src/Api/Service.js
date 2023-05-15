@@ -25,3 +25,9 @@ export const obterPedidosUsuarioApi = (id) => clienteApi.get(`/pedidouser/${id}`
 
 export const obterProdutoPedidoApi = (id) => clienteApi.get(`/pedidos/${id}/product`);
 
+export const obterCarrinhoUserApi = (id) => clienteApi.get(`/user/${id}/carrinho/products`);
+export const removeItemCarrinhoApi = (id) => clienteApi.delete(`/carrinho/${id}`);
+
+export const diminuiQuantidadeCarrinhoApi = (id) => clienteApi.put(`/carrinho/${id}/diminui`);
+export const aumentaQuantidadeCarrinhoApi = (id) => clienteApi.put(`/carrinho/${id}/aumenta`);
+

@@ -18,10 +18,7 @@ export default function PedidoDetalhe(){
         obterProdutoPedidoApi(id)
         .then((resposta) => {
             console.log(resposta);
-            setProdutos(resposta.data);  
-            
-            
-            
+            setProdutos(resposta.data); 
         })
         .catch((erro) => console.log(erro));
         let value = 0;
@@ -30,7 +27,6 @@ export default function PedidoDetalhe(){
         ))  
         setTotal(value);
     }
-
 
     return (
         <div class="container">
