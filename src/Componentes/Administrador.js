@@ -15,17 +15,13 @@ export default function Administrador() {
       </header>
 
       <div class="col">
-            <div className="card">
-              <img class="card-img-top" src="./img/camisaNirvana.jpg"></img>
-              <div class="card-body">
-                <h5>Camisa 01</h5>
-            
-              </div>
-            </div>
+        <div className="card">
+          <img class="card-img-top" src="./img/camisaNirvana.jpg"></img>
+          <div class="card-body">
+            <h5>Camisa 01</h5>
           </div>
-
-
-
+        </div>
+      </div>
     </div>
   );
 }
