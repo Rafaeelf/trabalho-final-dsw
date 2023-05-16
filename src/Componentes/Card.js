@@ -7,6 +7,7 @@ import { obterSucessoProduto } from "../Api/Service";
 export default function Card() {
   const [produtos, setProdutos] = useState([]);
   const navigate = useNavigate();
+  const [temRegistro,setTemRegistro] = useState(false);
 
   useEffect(() => atualizarProdutos());
 
@@ -17,6 +18,11 @@ export default function Card() {
       })
 
       .catch((erro) => console.log(erro));
+      if(produtos.length > 0){
+        setTemRegistro(true);
+      } else {
+        setTemRegistro(false);
+      }
   }
 
   function visualizarTarefa(id) {
@@ -27,7 +33,7 @@ export default function Card() {
   return (
     <div className="container">
       <div class="row">
-        {produtos.map((produto) => (
+        {temRegistro && produtos.map((produto) => (
           <div class="col">
             <div className="card">
               <img class="card-img-top" src="./img/camisaNirvana.jpg"></img>
