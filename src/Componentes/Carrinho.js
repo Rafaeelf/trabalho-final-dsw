@@ -59,14 +59,12 @@ export default function Carrinho() {
       usuario: usuario,
       dataPedido: new Date().toLocaleString()
     }
-    console.log(pedido);
     await criaPedidoApi(pedido)
     .then((response) => {
       navigate(`/inicio`);
     })
     .catch((erro)=> {
       if (erro.response) {
-        console.log("Entrou Aqui");
         console.log(erro.response);
       } else {
         console.log("erro: tente mais tarde!");
