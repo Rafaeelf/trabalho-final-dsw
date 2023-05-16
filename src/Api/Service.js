@@ -36,3 +36,5 @@ export const adicionarProdutoCarrinhoApi = (carrinho) => clienteApi.post(`/carri
 
 export const obterUsuariosApi = () => clienteApi.get(`/users`);
 
+export const obterProdutoMaisVendido = () => clienteApi.get(`/topproduct`);
+

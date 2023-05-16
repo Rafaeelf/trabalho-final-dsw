@@ -26,10 +26,14 @@ export default function Cliente() {
     <div class="container">
       <table className="table">
         <tbody>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Tipo</th>
           {usuarios.map((produto) => (
             <tr key={produto.id}>
+                <td>{produto.id}</td>
               <td>{produto.nome}</td>
-              <td>{produto.tipo}</td>
+              <td>{produto.tipo == 1 ? "Cliente" : "Administrador"}</td>
               <td>
                 <button className="btn btn-success mb-3" onClick={() => visualizarTarefa(produto.id)}> Ver + </button>
               </td>

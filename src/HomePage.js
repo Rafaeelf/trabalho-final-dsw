@@ -13,6 +13,7 @@ import ProdutoDetalhes from "./Componentes/ProdutoDetalhes";
 import Administrador from "./Componentes/Administrador";
 import Compra from "./Componentes/Compra";
 import PedidoDetalhe from "./Componentes/PedidoDetalhe";
+import Cliente from "./Componentes/Cliente";
 
 function HomePage() {
   function AuthenticateRoute({ children }) {

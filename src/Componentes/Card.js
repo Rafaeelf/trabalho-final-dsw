@@ -25,7 +25,7 @@ export default function Card() {
       }
   }
 
-  function visualizarTarefa(id) {
+  function visualizarProduto(id) {
     console.log(id);
     navigate(`/produtoDetalhes/${id}`);
   }
@@ -41,7 +41,7 @@ export default function Card() {
               <div class="card-body">
                 <h5>{produto.descricao}</h5>
                 <p class="card-text"> R$ {produto.preco} </p>
-                <button className="btn btn-success mb-3"  onClick={() => visualizarTarefa(produto.id)}>
+                <button className="btn btn-success mb-3"  onClick={() => visualizarProduto(produto.id)}>
                   Ver +
                 </button>
               </div>
