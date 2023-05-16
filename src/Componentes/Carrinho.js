@@ -107,7 +107,7 @@ export default function Carrinho() {
                           <p>R${produtoPed.produto.preco * produtoPed.quantidade}</p>
                         </div>
                         <div class="cart-row-cell pic">
-                          <button className="btn btn-danger mb-3" onClick={() => removeItemCarrinho(produtoPed.id)}><FaTrashAlt/></button>
+                          <button className="btn" onClick={() => removeItemCarrinho(produtoPed.id)}><FaTrashAlt/></button>
                           <span></span>
                         </div>
                       </div>
@@ -136,7 +136,7 @@ export default function Carrinho() {
               <p class="total-amount">R${total + taxa}</p>
             </div>
             <div className="btnFinalizar">
-              <button class="btn btn-white" onClick={handleSubmitImage}>Finalizar</button>
+              <button class="btn" onClick={handleSubmitImage}>Finalizar</button>
             </div>
           </footer>
         </div>

@@ -14,7 +14,7 @@ function Cabecalho() {
 
   return (
     <header className="border-bottom border-light border-5 mb-5 p-2">
-      <div className="container">
+      <div className="row">
         <div className="row">
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <img alt="logo" src="./img/logo.png"/>
@@ -34,7 +34,7 @@ function Cabecalho() {
                 <li className="nav=item">
                   {foiAutenticado && tipoUsuario && (
                     <Link className="nav-link" to="/administrador">
-                      <a>Adminstrador</a>
+                      <a>Administrador</a>
                     </Link>
                   )}
                 </li>
