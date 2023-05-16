@@ -56,6 +56,9 @@ export default function Administrador() {
                 <small>mês</small>
               </div>
             </div>
+            <a href="/produtos/cadastro">
+              Cadastrar Produto
+            </a>
           </div>
         </div>
       </div>

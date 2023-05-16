@@ -1,10 +1,14 @@
-import { useParams } from "react-router-dom";
-import { obterProdutoApi } from "../Api/Service";
+import { useNavigate, useParams } from "react-router-dom";
+import { adicionarProdutoCarrinhoApi, obterProdutoApi } from "../Api/Service";
 import "./ProdutoDetalhes.css";
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
+import { useAutCtx } from "../autCtx";
 
 export default function ProdutoDetalhes() {
+  const autCtx = useAutCtx();
+  const usuario = autCtx.usuario;
+  const navigate = useNavigate();
   const { id } = useParams();
   const [descricao, setDescricao] = useState("");
   const [preco, setPreco] = useState("");
@@ -28,6 +32,32 @@ export default function ProdutoDetalhes() {
     setQuantidade(resposta.data.quantidade);
     setTamanho(resposta.data.tamanho);
   }
+
+  const handleSubmitCarrinho = async (event) => {
+    event.preventDefault();
+
+    if(autCtx.autenticado){
+      const carrinho = {
+        usuario: usuario,
+        produto: id,
+        quantidade:2
+      }
+      await adicionarProdutoCarrinhoApi(carrinho)
+      .then((response) => {
+        navigate(`/inicio`);
+      })
+      .catch((erro)=> {
+        if (erro.response) {
+          console.log(erro.response);
+        } else {
+          console.log("erro: tente mais tarde!");
+        }
+      });
+    }
+  };
+
+
+
   return (
     <div className="container">
       <div class="row">
@@ -48,13 +78,9 @@ export default function ProdutoDetalhes() {
               <p className="item-size-text">TAMANHO</p>
               <p className="item-size-star">*: {tamanho}</p>
             </div>
-
             <br></br>
-
             <div className="btnComprar">
-              <a href="#" class="btn btn-white btn-animate">
-                Adicionar ao Carrinho
-              </a>
+              <button onClick={handleSubmitCarrinho}>Adicionar ao Carrinho </button>              
             </div>
           </div>
         </div>
