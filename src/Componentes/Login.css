@@ -11,7 +11,7 @@
 .btn:visited {
     text-transform: uppercase;
     text-decoration: none;
-    padding: 15px;
+    padding: 15px; 
     display: flexbox;
     border-radius: 100px;
     transition: all .2s;
