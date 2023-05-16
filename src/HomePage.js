@@ -38,7 +38,8 @@ function HomePage() {
             <Route path="/carrinho" element={<Carrinho />}></Route>
             <Route path="/produtodetalhes" element={<ProdutoDetalhes />}></Route>
             <Route path="/produtoDetalhes/:id" element={<ProdutoDetalhes />}></Route>   
-            <Route path="/pedidoDetalhes/:id" element={<PedidoDetalhe/>}></Route>           
+            <Route path="/pedidoDetalhes/:id" element={<PedidoDetalhe/>}></Route>    
+            <Route path="/users" element={<Cliente/>}></Route>          
             {<Route path="/administrador" element={
                 <AuthenticateRoute>
                     <Administrador />
