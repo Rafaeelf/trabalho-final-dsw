@@ -130,13 +130,9 @@
 
 .cart-container {
 	color: #fff;
-
 	border: none;
-	
 	font-size: 1em;
-	
 	padding: 5px 15px;
-	
 	background-color: #377ba8;
 }
 
@@ -158,3 +154,10 @@
 	flex: 1;
 	text-align: right;
 }
+
+.btnFinalizar{
+	background-color: #ffffff;
+	color: rgb(0, 0, 0);
+}
+
+

@@ -126,7 +126,7 @@ export default function Carrinho() {
             </div>
 
             <div class="totals">
-              <p class="total-label">Taxa</p>
+              <p class="total-label">Taxa de entrega</p>
               <p class="total-amount">R${taxa}</p>
             </div>
             <div class="totals">
