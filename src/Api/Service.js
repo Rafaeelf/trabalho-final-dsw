@@ -34,3 +34,5 @@ export const aumentaQuantidadeCarrinhoApi = (id) => clienteApi.put(`/carrinho/${
 export const criaPedidoApi = (pedido) => clienteApi.post(`/pedidos`, pedido); 
 export const adicionarProdutoCarrinhoApi = (carrinho) => clienteApi.post(`/carrinho`,carrinho);
 
+export const obterUsuariosApi = () => clienteApi.get(`/users`);
+
