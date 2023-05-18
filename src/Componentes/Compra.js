@@ -23,7 +23,6 @@ export default function Compra() {
     }
 
     function visualizarPedido(id) {
-        console.log(id);
         navigate(`/pedidoDetalhes/${id}`);
       }
 

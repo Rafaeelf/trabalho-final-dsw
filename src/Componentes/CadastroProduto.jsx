@@ -60,7 +60,7 @@ function CadastroProdutos() {
     };
 
     registerProdutoApi(produto);
-    navigate(`/inicio`);
+    navigate(`/administrador`);
   };
 
   return (

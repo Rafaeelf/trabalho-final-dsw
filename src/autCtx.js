@@ -7,7 +7,7 @@ export const useAutCtx = () =>useContext(AutCtx);
 
 export default function AutProvider({children}){
     const [autenticado, setAutenticado] = useState(false);
-    const[usuario,setUsuario] = useState(null);
+    const[usuario,setUsuario] = useState(null);    
     const[tipo,setAdministrador] = useState(false);
 
     async function autenticar(usuario,senha){              

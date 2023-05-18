@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { aumentaQuantidadeCarrinhoApi, criaPedidoApi, diminuiQuantidadeCarrinhoApi, obterCarrinhoUserApi, removeItemCarrinhoApi } from "../Api/Service";
+import { aumentaQuantidadeCarrinhoApi, criaPedidoApi, diminuiQuantidadeCarrinhoApi, obterCarrinhoUserApi, obterEnderecoEntrega, obterUserIdApi, removeItemCarrinhoApi } from "../Api/Service";
 import { useAutCtx } from "../autCtx";
 import "./Carrinho.css";
 import React, { useEffect } from "react";
@@ -13,8 +13,19 @@ export default function Carrinho() {
   const [produtos, setProdutos] = useState([]);
   const [total,setTotal] = useState(null);
   const [taxa,setTaxa] = useState(null);
+  const [nome,setNome] = useState('');
+  const [cartao,setCartao] = useState('');
   const [temRegistro,setTemRegistro] = useState(false);
   const navigate = useNavigate();
+  const [pagamento, setPagamento] = useState('Crédito');  
+  const [ruaEnt, setRuaEnt] = useState('');
+  const [numEnt, setNumEnt] = useState('');
+  const [baiEnt, setBaiEnt] = useState('');
+  const [cidEnt, setCidEnt] = useState('');
+  const [cepEnt, setCepEnt] = useState('');
+  const [estEnt, setEstEnt] = useState('');
+  const [paiEnt, setPaiEnt] = useState('');
+  const [compEnt, setCompEnt] = useState('');
 
   useEffect(() => atualizarCarrinho());
 
@@ -24,6 +35,7 @@ export default function Carrinho() {
       setProdutos(resposta.data);
     })
     .catch();
+
     if(produtos.length > 0){
       var cont = 0;
       var valTaxa = 0;
@@ -34,6 +46,26 @@ export default function Carrinho() {
       setTotal(cont);
       setTaxa(valTaxa);
       setTemRegistro(true);
+      obterUserIdApi(usuario)
+      .then((resposta)=>{
+        setNome(resposta.data.nome);
+        setCartao(resposta.data.cartao);
+      })
+      .catch((erro)=>console.log(erro.data))
+      .finally()
+
+      obterEnderecoEntrega(usuario)
+      .then((resposta)=>{
+        setRuaEnt(resposta.data.rua);
+        setNumEnt(resposta.data.numero);
+        setBaiEnt(resposta.data.bairro);
+        setCidEnt(resposta.data.cidade);
+        setCepEnt(resposta.data.cep);
+        setEstEnt(resposta.data.estado);
+        setPaiEnt(resposta.data.pais);
+        setCompEnt(resposta.data.complemento)
+      })
+
     }else {
       setTemRegistro(false);
     }
@@ -52,25 +84,29 @@ export default function Carrinho() {
     aumentaQuantidadeCarrinhoApi(id);
   }
 
-  const handleSubmitImage = async (event) => {
+  const handleSubmitPedido = async (event) => {
     event.preventDefault();
 
-    const pedido = {
-      usuario: usuario,
-      dataPedido: new Date().toLocaleString()
-    }
-    await criaPedidoApi(pedido)
-    .then((response) => {
-      navigate(`/inicio`);
-    })
-    .catch((erro)=> {
-      if (erro.response) {
-        console.log(erro.response);
-      } else {
-        console.log("erro: tente mais tarde!");
+    if(pagamento === "0"){
+      alert("Informe uma forma de Pagamento!");
+    } else {
+      const pedido = {
+        usuario: usuario,
+        pagamento: pagamento
       }
-    });
+      await criaPedidoApi(pedido)
+      .then((response) => {
+        navigate(`/inicio`);
+      })
+      .catch((erro)=> {
+        alert("Não existe produtos no carrinho!");      
+      });
+    }
   };
+
+  const handleChange = (event) => {
+    setPagamento(event.target.value)
+  }
 
   return (
     <body>
@@ -133,8 +169,68 @@ export default function Carrinho() {
               <p class="total-label">Total</p>
               <p class="total-amount">R${total + taxa}</p>
             </div>
+            
+              {temRegistro && (
+                <div>
+                  <div>
+                    <p>Informações de Pagamento</p>
+                  </div>
+                  <div class="totals">
+                    <p class="total-label">Nome:</p>
+                    <p class="total-amount">{nome}</p>
+                  </div>
+                  <div class="totals">
+                    <p class="total-label">Número do Cartão:</p>
+                    <p class="total-amount">{cartao}</p>
+                  </div>
+                  <div class="totals">
+                    <p class="total-label">Forma de Pagamento:</p>                    
+                    <select value={pagamento} onChange={handleChange}>
+                      <option value ="0" selected>Selecione...</option>
+                      <option value="Crédito">Crédito</option>
+                      <option value="Débito">Débito</option>
+                      <option value="Boleto">Boleto</option>
+                    </select>
+                  </div>
+                  <div>
+                    <p>Endereço de Entrega</p>
+                  </div>
+                  <div class="totals">
+                    <p class="total-label">Rua:</p>
+                    <p class="total-amount">{ruaEnt}</p>
+                  </div>
+                  <div class="totals">
+                    <p class="total-label">Número:</p>
+                    <p class="total-amount">{numEnt}</p>
+                  </div>
+                  <div class="totals">
+                    <p class="total-label">Bairro:</p>
+                    <p class="total-amount">{baiEnt}</p>
+                  </div>
+                  <div class="totals">
+                    <p class="total-label">Cidade:</p>
+                    <p class="total-amount">{cidEnt}</p>
+                  </div>
+                  <div class="totals">
+                    <p class="total-label">CEP:</p>
+                    <p class="total-amount">{cepEnt}</p>
+                  </div>
+                  <div class="totals">
+                    <p class="total-label">Estado:</p>
+                    <p class="total-amount">{estEnt}</p>
+                  </div>
+                  <div class="totals">
+                    <p class="total-label">País:</p>
+                    <p class="total-amount">{paiEnt}</p>
+                  </div>
+                  <div class="totals">
+                    <p class="total-label">Complemento:</p>
+                    <p class="total-amount">{compEnt}</p>
+                  </div>
+                </div>
+              )}
             <div className="btnFinalizar">
-              <button class="btn" onClick={handleSubmitImage}>Finalizar</button>
+              <button class="btn" onClick={handleSubmitPedido}>Finalizar</button>
             </div>
           </footer>
         </div>

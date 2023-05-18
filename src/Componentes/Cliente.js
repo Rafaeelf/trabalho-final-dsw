@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { obterUsuariosApi } from "../Api/Service";
 
 export default function Cliente() {
   const [usuarios, setUsuarios] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => atualizarUsuarios());
 
@@ -15,11 +13,6 @@ export default function Cliente() {
       })
 
       .catch((erro) => console.log(erro));
-  }
-
-  function visualizarTarefa(id) {
-    console.log(id);
-    navigate(`/produtoDetalhes/${id}`);
   }
 
   return (
@@ -33,10 +26,7 @@ export default function Cliente() {
             <tr key={produto.id}>
                 <td>{produto.id}</td>
               <td>{produto.nome}</td>
-              <td>{produto.tipo == 1 ? "Cliente" : "Administrador"}</td>
-              <td>
-                <button className="btn btn-success mb-3" onClick={() => visualizarTarefa(produto.id)}> Ver + </button>
-              </td>
+              <td>{produto.tipo === 1 ? "Cliente" : "Administrador"}</td>             
             </tr>
           ))}
         </tbody>

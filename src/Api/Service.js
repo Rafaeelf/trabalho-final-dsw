@@ -14,6 +14,7 @@ export const registerEnderecoApi = (endereco) => clienteApi.post(`/endereco`,end
 
 export const autenticarApi = (credencial) => clienteApi.post(`/autenticar`,credencial);
 export const obterUserEmailApi = (email) => clienteApi.get(`/usuario/${email}`);
+export const obterUserIdApi = (id) => clienteApi.get(`/users/${id}`);
 
 export const registerImageApi = (image) => clienteApi.post(`/files`,image, configImage);
 export const registerProdutoApi = (produto) => clienteApi.post(`/products`,produto);
@@ -37,4 +38,6 @@ export const adicionarProdutoCarrinhoApi = (carrinho) => clienteApi.post(`/carri
 export const obterUsuariosApi = () => clienteApi.get(`/users`);
 
 export const obterProdutoMaisVendido = () => clienteApi.get(`/topproduct`);
+
+export const obterEnderecoEntrega = (id) => clienteApi.get(`users/${id}/enderecoentrega`);
 

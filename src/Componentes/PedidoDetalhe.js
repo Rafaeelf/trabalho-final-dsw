@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { obterProdutoPedidoApi } from "../Api/Service";
 
 
@@ -9,23 +9,26 @@ export default function PedidoDetalhe(){
 
     const { id } = useParams();
     const [produtos, setProdutos] = useState([]);
-    const [total, setTotal] = useState(null);
-    const navigate = useNavigate();
+    const [total, setTotal] = useState('');
+    let valor = 0;
 
     useEffect(() => atualizarPedidoProdutos(), [id]);
 
     function atualizarPedidoProdutos() {        
         obterProdutoPedidoApi(id)
         .then((resposta) => {
-            console.log(resposta);
             setProdutos(resposta.data); 
+            calculaTotal();
         })
         .catch((erro) => console.log(erro));
-        let value = 0;
+        
+    }
+
+    function calculaTotal (){
         produtos.map((prod)=>(
-            value = value + prod.total                
-        ))  
-        setTotal(value);
+            valor += prod.total
+        )) 
+        setTotal(valor);
     }
 
     return (
@@ -48,11 +51,17 @@ export default function PedidoDetalhe(){
                         <td>{produtoPed.total}</td>
                     </tr>
                 ))}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{total}</td>
+                </tr>
                 </tbody>
             </table>
-            <div>
-                <p>Total: {total}</p>
-            </div>
+            
         </div>
     )
 
