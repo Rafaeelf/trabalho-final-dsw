@@ -120,12 +120,14 @@ export default function Carrinho() {
               {temRegistro && (produtos.map((produtoPed) => (
                 <tr key={produtoPed.id}>
                   <td>
-                    <div class="cart-item">
-                      <div class="cart-row">                        
-                        <div class="cart-row-cell desc">
+                    <div class="cart">
+                      <div class="cart">      
+                                        
+                        <div class="cart-container">
                           <h5>{produtoPed.produto.descricao}</h5>
                           <p>Tamanho: {produtoPed.produto.tamanho}</p>
                         </div>
+                        <br></br>
                         <div class="cart-row-cell quant">
                           <ul>
                             <li>
@@ -137,10 +139,10 @@ export default function Carrinho() {
                             </li>
                           </ul>
                         </div>
-                        <div class="cart-row-cell amount">
+                        <div class="cart-amount">
                           <p>R${produtoPed.produto.preco * produtoPed.quantidade}</p>
                         </div>
-                        <div class="cart-row-cell pic">
+                        <div class="cart-cell ">
                           <button className="btn" onClick={() => removeItemCarrinho(produtoPed.id)}><FaTrashAlt/></button>
                           <span></span>
                         </div>
