@@ -13,7 +13,7 @@ function Cabecalho() {
   }
 
   return (
-    <header className="border-bottom border-light border-5 mb-5 p-2">
+    <header className="border-bottom border-light border-5 mb-5 p-3">
       <div className="row">
         <div className="row">
           <nav class="navbar navbar-expand-lg navbar-light bg-light">

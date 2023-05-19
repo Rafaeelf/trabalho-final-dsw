@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { obterSucessoProduto } from "../Api/Service";
 
 export default function Card() {
+
   const [produtos, setProdutos] = useState([]);
   const navigate = useNavigate();
   const [temRegistro,setTemRegistro] = useState(false);
@@ -36,7 +37,7 @@ export default function Card() {
         {temRegistro && produtos.map((produto) => (
           <div class="col">
             <div className="card">
-              <img class="card-img-top" src="./img/camisaNirvana.jpg"></img>
+              <img class="card-img-top" src="./img/camisaNirvana.jpg" alt="imagem"/>
 
               <div class="card-body">
                 <h5>{produto.descricao}</h5>

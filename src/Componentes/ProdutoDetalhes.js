@@ -4,6 +4,9 @@ import "./ProdutoDetalhes.css";
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { useAutCtx } from "../autCtx";
+import { Row, Form, FormGroup, Col } from "react-bootstrap";
+import ToastInfo from "./ToastInfo";
+import { Toast } from "bootstrap";
 
 export default function ProdutoDetalhes() {
   const autCtx = useAutCtx();
@@ -15,6 +18,8 @@ export default function ProdutoDetalhes() {
   const [qtde, setQuantidade] = useState("");
   const [tamanho, setTamanho] = useState("");
   const [foto, setFoto] = useState("");
+  const [informacao, setInformacao] = useState("");
+  const [venda, setQtdeVenda] = useState("");
 
   useEffect(() => obterProduto(), [id]);
 
@@ -31,64 +36,78 @@ export default function ProdutoDetalhes() {
     setFoto("./img/" + resposta.data.foto);
     setQuantidade(resposta.data.quantidade);
     setTamanho(resposta.data.tamanho);
+    setInformacao(resposta.data.informacao);
+  }
+
+  function handlerQuantidade(event) {
+    setQtdeVenda(event.target.value);
   }
 
   const handleSubmitCarrinho = async (event) => {
     event.preventDefault();
 
-    if(autCtx.autenticado){
+    if (autCtx.autenticado) {
       const carrinho = {
         usuario: usuario,
         produto: id,
-        quantidade:2
-      }
+        quantidade: venda,
+      };
       await adicionarProdutoCarrinhoApi(carrinho)
-      .then((response) => {
-        navigate(`/inicio`);
-      })
-      .catch((erro)=> {
-        if (erro.response) {
-          console.log(erro.response);
-        } else {
-          console.log("erro: tente mais tarde!");
-        }
-      });
+        .then((response) => {
+          navigate(`/inicio`);
+        })
+        .catch((erro) => {
+          if (erro.response) {
+            console.log(erro.response);
+          } else {
+            console.log("erro: tente mais tarde!");
+          }
+        });
+    } else {
+      const toastLiveExample = document.getElementById('liveToast');
+      const toast = new  Toast(toastLiveExample);
+      toast.show();
     }
   };
-
-
 
   return (
     <div className="container">
       <div class="row">
-        <div class="col">
-          <div className="card">
-            <img class="card-img-top" src={foto} title="image" />
-          </div>
-        </div>
-        <div class="col">
-          <div className="card-right">
-            <h5 className="item-title">{descricao}</h5>
-            <p className="item-price">
-              <b>R${preco}</b>
-            </p>
-            <p className="item-desc"></p>
-            <br></br>
-            <div>
-              <p className="item-size-text">TAMANHO</p>
-              <p className="item-size-star">*: {tamanho}</p>
-            </div>
-            <br></br>
-            <div className="btnComprar">
-              <button onClick={handleSubmitCarrinho}>Adicionar ao Carrinho </button>              
-            </div>
-          </div>
-        </div>
+        <Form>
+          <Row>
+            <FormGroup as={Col} controlId="formGridImage">
+              <div className="card">
+                <img class="card-img-top" src={foto} alt="imagem" />
+              </div>
+            </FormGroup>
+            <FormGroup as={Col} controlId="formGridPreview">
+              <div className="card-right">
+                <h3 className="item-title">{descricao}</h3>
+                <p className="item-size"><h5>Tamanho : {tamanho}</h5></p>
+                <p className="item-price"><h5>R${preco}</h5></p>               
+                <p className="item-desc"><h5>Estoque: {qtde}</h5></p>
+                <FormGroup as={Col} controlId="formGridQuantidade">
+                  <Form.Control placeholder="Quantidade" type="number" value={venda} onChange={handlerQuantidade}/>
+                </FormGroup>
+                <br/>
+                <div className="btnComprar">
+                  <button class="btn btn-primary" onClick={handleSubmitCarrinho}>Adicionar ao Carrinho</button>
+                </div>
+              </div>
+            </FormGroup>
+          </Row>
+          <Row>
+            <div class="form-floating">
+              <br/>
+              <textarea class="form-control" disabled value={informacao}></textarea>
+            </div>  
+          </Row>
+        </Form>
+        <ToastInfo texto={"Efetue o Login para incluir produtos no carrinho!"}/>
       </div>
-      <br></br>
-      <br></br>
+      <br/>
       <div class="row">
-        <h1>Sucesso de venda</h1>
+        <p><h2>Sucesso de venda</h2></p>
         <Card></Card>
       </div>
     </div>

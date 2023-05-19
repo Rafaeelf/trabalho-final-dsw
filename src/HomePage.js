@@ -14,6 +14,7 @@ import Administrador from "./Componentes/Administrador";
 import Compra from "./Componentes/Compra";
 import PedidoDetalhe from "./Componentes/PedidoDetalhe";
 import Cliente from "./Componentes/Cliente";
+import Entregas from "./Componentes/Entregas";
 
 function HomePage() {
   function AuthenticateRoute({ children }) {
@@ -40,7 +41,8 @@ function HomePage() {
             <Route path="/produtodetalhes" element={<ProdutoDetalhes />}></Route>
             <Route path="/produtoDetalhes/:id" element={<ProdutoDetalhes />}></Route>   
             <Route path="/pedidoDetalhes/:id" element={<PedidoDetalhe/>}></Route>    
-            <Route path="/users" element={<Cliente/>}></Route>          
+            <Route path="/users" element={<Cliente/>}></Route>   
+            <Route path="/entregas" element={<Entregas/>}></Route>          
             {<Route path="/administrador" element={
                 <AuthenticateRoute>
                     <Administrador />

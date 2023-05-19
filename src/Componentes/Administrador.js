@@ -28,6 +28,10 @@ export default function Administrador() {
   function listarUsuarios(){
     navigate(`/users`);
   }
+  
+  function listarEntregas(){
+    navigate(`/entregas`);
+  }
 
   function cadastrarProduto(){
     navigate(`/produtos/cadastro`);
@@ -88,10 +92,8 @@ export default function Administrador() {
         <div class="col-sm-6 col-md-4">
           <div class="ls-box ls-box">
             <h6 class="ls-title-4"><strong>ENTREGAS REALIZADAS</strong></h6>
-
-            <button class="btn">Entregas realizadas</button>
+            <button class="btn" onClick={() => listarEntregas()} >Entregas realizadas</button>
           </div>
-
         </div>
       </div>
     </div>

@@ -30,12 +30,12 @@ export default function Produtos() {
         <tbody>
           {produtos.map((produto) => (
             <tr key={produto.id}>
-              <td><img class="card-img-top" src={"./img/"+produto.foto}></img></td>
+              <td><img class="card-img-top" src={"./img/"+produto.foto}/></td>
               <td>{produto.descricao}</td>
               <td>{produto.tamanho}</td>
               <td>{produto.preço}</td>
               <td>
-                <button className="btn btn-success mb-3" onClick={() => visualizarTarefa(produto.id)}> Ver + </button>
+                <button class="btn btn-success mb-3" onClick={() => visualizarTarefa(produto.id)}> Ver + </button>
               </td>
             </tr>
           ))}
