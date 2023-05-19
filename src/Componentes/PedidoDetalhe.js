@@ -12,9 +12,9 @@ export default function PedidoDetalhe(){
     const [total, setTotal] = useState('');
     let valor = 0;
 
-    useEffect(() => atualizarPedidoProdutos(), [id]);
+    useEffect(() => atualizarPedidoProdutos(id));
 
-    function atualizarPedidoProdutos() {        
+    function atualizarPedidoProdutos(id) {        
         obterProdutoPedidoApi(id)
         .then((resposta) => {
             setProdutos(resposta.data); 
@@ -35,15 +35,15 @@ export default function PedidoDetalhe(){
         <div class="container">
             <table className="table">
                 <th>Imagem</th>
-                <th>Descricao</th>
+                <th>Descrição</th>
                 <th>Tamanho</th>
                 <th>Quantidade</th>
                 <th>Valor</th>
-                <th>valor Total</th>
+                <th>Valor Total</th>
                 <tbody>
                 {produtos.map((produtoPed) => (
                     <tr key={produtoPed.id}>
-                        <td><img class="card-img-top" src={"./img/"+produtoPed.produto.foto}/></td>
+                        <td><img class="card-img-top" src={"./img/"+produtoPed.produto.foto} alt="imagem"/></td>
                         <td>{produtoPed.produto.descricao}</td>
                         <td>{produtoPed.produto.tamanho}</td>
                         <td>{produtoPed.quantidade}</td>

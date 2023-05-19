@@ -19,11 +19,12 @@ export default function ProdutoDetalhes() {
   const [tamanho, setTamanho] = useState("");
   const [foto, setFoto] = useState("");
   const [informacao, setInformacao] = useState("");
-  const [venda, setQtdeVenda] = useState("");
+  const [venda, setQtdeVenda] = useState(0);
+  const [erro,setErro] = useState(false);
 
-  useEffect(() => obterProduto(), [id]);
+  useEffect(() => obterProduto(id));
 
-  function obterProduto() {
+  function obterProduto(id) {
     console.log(id);
     obterProdutoApi(id)
       .then((resposta) => carregaDados(resposta))
@@ -47,25 +48,34 @@ export default function ProdutoDetalhes() {
     event.preventDefault();
 
     if (autCtx.autenticado) {
-      const carrinho = {
-        usuario: usuario,
-        produto: id,
-        quantidade: venda,
-      };
-      await adicionarProdutoCarrinhoApi(carrinho)
-        .then((response) => {
-          navigate(`/inicio`);
-        })
-        .catch((erro) => {
-          if (erro.response) {
-            console.log(erro.response);
-          } else {
-            console.log("erro: tente mais tarde!");
-          }
-        });
+      setErro(false);
+      if(venda > 0){
+        const carrinho = {
+          usuario: usuario,
+          produto: id,
+          quantidade: venda,
+        };
+        await adicionarProdutoCarrinhoApi(carrinho)
+          .then((response) => {
+            navigate(`/inicio`);
+          })
+          .catch((erro) => {
+            if (erro.response) {
+              console.log(erro.response);
+            } else {
+              console.log("erro: tente mais tarde!");
+            }
+          });
+      } else {
+        const toastLiveExample = document.getElementById('liveToast');
+        const toast = new Toast(toastLiveExample);
+        toast.show();
+      }
+      
     } else {
+      setErro(true);
       const toastLiveExample = document.getElementById('liveToast');
-      const toast = new  Toast(toastLiveExample);
+      const toast = new Toast(toastLiveExample);
       toast.show();
     }
   };
@@ -103,13 +113,13 @@ export default function ProdutoDetalhes() {
             </div>  
           </Row>
         </Form>
-        <ToastInfo texto={"Efetue o Login para incluir produtos no carrinho!"}/>
+        <ToastInfo texto={erro ? "Efetue o Login para incluir produtos no carrinho!" : "Informe uma quantidade!!!"}/>
       </div>
       <br/>
       <div class="row">
         <p><h2>Sucesso de venda</h2></p>
         <Card></Card>
-      </div>
+      </div>      
     </div>
   );
 }

@@ -15,6 +15,7 @@ import Compra from "./Componentes/Compra";
 import PedidoDetalhe from "./Componentes/PedidoDetalhe";
 import Cliente from "./Componentes/Cliente";
 import Entregas from "./Componentes/Entregas";
+import EntregaDetalhe from "./Componentes/EntregaDetalhe";
 
 function HomePage() {
   function AuthenticateRoute({ children }) {
@@ -25,30 +26,62 @@ function HomePage() {
     return <Navigate to="/" />;
   }
 
+  function AuthenticateRouteAdm({children}){
+    const autCtx = useAutCtx();
+    if(autCtx.tipo && autCtx.autenticado){
+      return children;
+    }
+
+  }
+
   return (
     <div className="HomePage">
       <AutProvider>
         <BrowserRouter>
-          <Cabecalho></Cabecalho>
+          <Cabecalho/>
           <Routes>
             <Route path="/" element={<Inicio />}></Route>
             <Route path="/inicio" element={<Inicio />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/cadastro" element={<Cadastro />}></Route>
             <Route path="/produtos" element={<Produto />}></Route>
-            <Route path="/produtos/cadastro" element={<CadastroProdutos />}></Route>
-            <Route path="/carrinho" element={<Carrinho />}></Route>
-            <Route path="/produtodetalhes" element={<ProdutoDetalhes />}></Route>
-            <Route path="/produtoDetalhes/:id" element={<ProdutoDetalhes />}></Route>   
-            <Route path="/pedidoDetalhes/:id" element={<PedidoDetalhe/>}></Route>    
-            <Route path="/users" element={<Cliente/>}></Route>   
-            <Route path="/entregas" element={<Entregas/>}></Route>          
-            {<Route path="/administrador" element={
-                <AuthenticateRoute>
-                    <Administrador />
+            <Route path="/produtoDetalhes/:id" element={<ProdutoDetalhes />}></Route>
+
+            {<Route path="/produtos/cadastro" element={
+              <AuthenticateRouteAdm>
+                <CadastroProdutos />
+              </AuthenticateRouteAdm>}>
+            </Route>}
+            {<Route path="/carrinho" element={
+              <AuthenticateRoute>
+                <Carrinho />
                 </AuthenticateRoute>}>
-            </Route>
-            }            
+            </Route>}            
+            {<Route path="/pedidoDetalhes/:id" element={
+              <AuthenticateRoute>
+                <PedidoDetalhe/>
+                </AuthenticateRoute>}>
+            </Route>}
+            {<Route path="/entrega/:id/pedido" element={
+                <AuthenticateRouteAdm>
+                    <EntregaDetalhe />
+                </AuthenticateRouteAdm>}>
+            </Route>}     
+            {<Route path="/users" element={
+                <AuthenticateRouteAdm>
+                    <Cliente />
+                </AuthenticateRouteAdm>}>
+            </Route>}    
+            {<Route path="/entregas" element={
+                <AuthenticateRouteAdm>
+                    <Entregas />
+                </AuthenticateRouteAdm>}>
+            </Route>}                    
+            {<Route path="/administrador" element={
+                <AuthenticateRouteAdm>
+                    <Administrador />
+                </AuthenticateRouteAdm>}>
+            </Route>}            
             {<Route path="/carrinho" element={
                 <AuthenticateRoute>
                     <Carrinho />
@@ -63,7 +96,7 @@ function HomePage() {
             }
           </Routes>
         </BrowserRouter>
-        <Rodape></Rodape>
+        <Rodape/>
       </AutProvider>
     </div>
   );

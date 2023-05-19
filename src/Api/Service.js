@@ -17,8 +17,6 @@ export const obterUsuariosApi = () => clienteApi.get(`/users`);
 
 export const autenticarApi = (credencial) => clienteApi.post(`/autenticar`,credencial);
 
-
-
 export const registerImageApi = (image) => clienteApi.post(`/files`,image, configImage);
 export const registerProdutoApi = (produto) => clienteApi.post(`/products`,produto);
 
@@ -39,4 +37,5 @@ export const obterEnderecoEntrega = (id) => clienteApi.get(`users/${id}/endereco
 
 export const obterProdutoMaisVendido = () => clienteApi.get(`/topproduct`);
 export const obterEntregasApi = () => clienteApi.get(`/entregas`);
+export const obterEntregaPedidoApi = (id) => clienteApi.get(`/entrega/${id}/pedido`);
 

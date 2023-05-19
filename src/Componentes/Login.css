@@ -17,13 +17,14 @@
     transition: all .2s;
     position: relative;
     margin-top: 10px;
-    color: white;
+    color: rgb(255, 255, 255);
 
 }
 
 .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    color: black;
 }
 
 .btn:active {
