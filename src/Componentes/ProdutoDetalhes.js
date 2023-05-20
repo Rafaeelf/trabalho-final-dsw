@@ -2,13 +2,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { adicionarProdutoCarrinhoApi, obterProdutoApi } from "../Api/Service";
 import "./ProdutoDetalhes.css";
 import React, { useEffect, useState } from "react";
-import Card from "./Card";
 import { useAutCtx } from "../autCtx";
 import { Row, Form, FormGroup, Col } from "react-bootstrap";
 import ToastInfo from "./ToastInfo";
 import { Toast } from "bootstrap";
 
 export default function ProdutoDetalhes() {
+
   const autCtx = useAutCtx();
   const usuario = autCtx.usuario;
   const navigate = useNavigate();
@@ -22,10 +22,9 @@ export default function ProdutoDetalhes() {
   const [venda, setQtdeVenda] = useState(0);
   const [erro,setErro] = useState(false);
 
-  useEffect(() => obterProduto(id));
+  useEffect(() => obterProduto(id),[id]);
 
   function obterProduto(id) {
-    console.log(id);
     obterProdutoApi(id)
       .then((resposta) => carregaDados(resposta))
       .catch((erro) => console.log(erro));

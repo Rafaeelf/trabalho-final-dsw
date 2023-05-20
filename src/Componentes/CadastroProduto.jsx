@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { registerImageApi, registerProdutoApi } from "../Api/Service";
 import "./CadastroProduto.css";
 import { MDBCard } from "mdb-react-ui-kit";
-import { useNavigate } from "react-router-dom";
 import { Col, Form, FormGroup, Row } from "react-bootstrap";
 
 function CadastroProdutos() {
-  const navigate = useNavigate();
+  
   const [image, setImage] = useState("");
-  const [endImg, setEndImage] = useState('./img/default.png');
+  const [endImg, setEndImage] = useState("./img/default.jpg");
   const [descricao, setDescricao] = useState("");
   const [valor, setValor] = useState("");
   const [qtde, setQuantidade] = useState("");
@@ -67,81 +66,78 @@ function CadastroProdutos() {
     };
 
     registerProdutoApi(produto);
-    navigate(`/administrador`);
-  };
+    resetCampos();
+  }
+
+  function resetCampos(){
+    setImage("");
+    setDescricao("");
+    setQuantidade("");
+    setValor("");
+    setInfo("");
+    setTamanho("");
+    setEndImage("");
+  }
 
   return (
     <div className="container">
       <form onSubmit={handleSubmitImage}>
-      <Row className="mb-2">
-        <FormGroup as={Col} controlId="formGridImage">
-          <Form.Label>Imagem</Form.Label>
-          <Form.Control
-            type="file"
-            name="image"
-            onChange={(e) => setImagemDefault(e)}
-          />
-        </FormGroup>
-        <FormGroup as={Col} controlId="formGridPreview">
-          <MDBCard>
-            {image && (
-              <img class="card-img-top" src={URL.createObjectURL(image)}></img>           
-            )}
-            {!image && (
-              <img class="card-img-top" src={endImg}></img>                
-            )}
-          </MDBCard>
-        </FormGroup>
-      </Row>
-      <Row>
-        <FormGroup as={Col} controlId="formGridDescricao">
-          <Form.Label>Descrição</Form.Label>
-          <Form.Control
-            type="text"
-            id="descricao"
-            value={descricao}
-            onChange={handlerDescricao}
-          />
-        </FormGroup>
-        <FormGroup as={Col} controlId="formGridValor">
-          <Form.Label>Valor</Form.Label>
-          <Form.Control type="number" value={valor} onChange={handlerValor} />
-        </FormGroup>
-        <FormGroup as={Col} controlId="formGridQuantidade">
-          <Form.Label>Quantidade</Form.Label>
-          <Form.Control
-            type="number"
-            value={qtde}
-            onChange={handlerQuantidade}
-          />
-        </FormGroup>
-      </Row> 
-      <Row>
-        <Form.Label>Informações</Form.Label>
-        <div class="form-floating">
-          <textarea class="form-control" id="info" value={info} onChange={handlerInfo}></textarea>
-        </div>
-      </Row>
-      <Row>
-        <Form.Label>Tamanho</Form.Label>
-        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-          <input type="radio" class="btn-check" name="options" id="P" autocomplete="off" onClick={handlerTamanho}/>
-          <label class="btn btn-outline-primary" for="P">P</label>
-          <input type="radio" class="btn-check" name="options" id="M" autocomplete="off" onClick={handlerTamanho}/>
-          <label class="btn btn-outline-primary" for="M">M</label>
-          <input type="radio" class="btn-check" name="options" id="G" autocomplete="off" onClick={handlerTamanho}/>
-          <label class="btn btn-outline-primary" for="G">G</label>
-          <input type="radio" class="btn-check" name="options" id="GG" autocomplete="off" onClick={handlerTamanho}/>
-          <label class="btn btn-outline-primary" for="GG">GG</label>
-        </div>
-      </Row> 
-      <Row>
-        <Form.Label></Form.Label>
-        <Form.Label></Form.Label>
-        <div class="d-grid gap-2 col-6 mx-auto">
-          <button class="btn btn-primary" type="submit">Cadastrar</button>
-        </div>  
-      </Row>
+        <Row className="mb-2">
+          <FormGroup as={Col} controlId="formGridImage">
+            <Form.Label>Imagem</Form.Label>
+            <Form.Control type="file" name="image" onChange={(e) => setImagemDefault(e)}/>
+          </FormGroup>
+          <FormGroup as={Col} controlId="formGridPreview">
+            <MDBCard>
+              {image && (
+                <img class="card-img-top" alt="imagem" src={URL.createObjectURL(image)}></img>           
+              )}
+              {!image && (
+                <img className="card-img-top" alt="imagem" src={endImg}></img>                
+              )}
+            </MDBCard>
+          </FormGroup>
+        </Row>
+        <Row>
+          <FormGroup as={Col} controlId="formGridDescricao">
+            <Form.Label>Descrição</Form.Label>
+            <Form.Control type="text" id="descricao" value={descricao} onChange={handlerDescricao}/>
+          </FormGroup>
+          <FormGroup as={Col} controlId="formGridValor">
+            <Form.Label>Valor</Form.Label>
+            <Form.Control type="number" id="valor" value={valor} onChange={handlerValor} />
+          </FormGroup>
+          <FormGroup as={Col} controlId="formGridQuantidade">
+            <Form.Label>Quantidade</Form.Label>
+            <Form.Control type="number" id="qtde" value={qtde} onChange={handlerQuantidade}/>
+          </FormGroup>
+        </Row> 
+        <Row>
+          <Form.Label>Informações</Form.Label>
+          <div class="form-floating">
+            <textarea class="form-control" id="info" value={info} onChange={handlerInfo} />
+          </div>
+        </Row>
+        <Row>
+          <Form.Label>Tamanho</Form.Label>
+          <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="options" id="P" autocomplete="off" onClick={handlerTamanho}/>
+            <label class="btn btn-outline-primary" for="P">P</label>
+            <input type="radio" class="btn-check" name="options" id="M" autocomplete="off" onClick={handlerTamanho}/>
+            <label class="btn btn-outline-primary" for="M">M</label>
+            <input type="radio" class="btn-check" name="options" id="G" autocomplete="off" onClick={handlerTamanho}/>
+            <label class="btn btn-outline-primary" for="G">G</label>
+            <input type="radio" class="btn-check" name="options" id="GG" autocomplete="off" onClick={handlerTamanho}/>
+            <label class="btn btn-outline-primary" for="GG">GG</label>
+          </div>
+        </Row> 
+        <Row>
+          <Form.Label></Form.Label>
+          <Form.Label></Form.Label>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary" type="submit">Cadastrar</button>
+          </div>  
+        </Row>
       </form>
     </div>
   );

@@ -7,6 +7,7 @@ import ToastInfo from "./ToastInfo";
 import { Toast } from "bootstrap";
 
 function Login() {
+
   const [emailLogin, setEmailLogin] = useState("");
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
@@ -31,6 +32,10 @@ function Login() {
     }
   }
 
+  function register(){
+    navigate(`/cadastro`);
+  }
+
   return (
     <div className="login">      
       <div className="row">
@@ -38,52 +43,25 @@ function Login() {
           <form>
             <div className="form-group">
               <label for="exampleInputEmail1">Email</label>
-              <input
-                type="text"
-                className="form-control"
-                id="exampleInputEmail1"
-                placeholder="Informe seu Email"
-                value={emailLogin}
-                onChange={emailLoginHandler}
-              />
+              <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Informe seu Email" value={emailLogin} onChange={emailLoginHandler}/>
             </div>
             <div className="form-group">
               <label for="exampleInputPassword1">Senha</label>
-              <input
-                type="password"
-                className="form-control"
-                id="exampleInputPassword1"
-                placeholder="Informe sua Senha"
-                value={senha}
-                onChange={senhaHandler}
-              />
+              <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Informe sua Senha" value={senha} onChange={senhaHandler}/>
             </div>
             <div className="btnEntrar">
-              <a
-                href="#"
-                class="btn btn-white btn-animate"
-                onClick={loginHandler}
-              >
-                Entrar
-              </a>
+              <a href="#" class="btn btn-white btn-animate" onClick={loginHandler}>Entrar</a>
             </div>
           </form>
           <div className="cadastro">
             <a>Você é Novo por aqui?</a>
           </div>
           <div className="btnCadastrar">
-            <a
-              href="/cadastro"
-              class="btn btn-white btn-animate"
-              onClick={<Link to="/cadastro"></Link>}
-            >
-              Cadastre-se
-            </a>
+            <a href="" class="btn btn-white btn-animate" onClick={register}>Cadastre-se</a>
             <ToastInfo texto={"Email ou Senha incorretos."}></ToastInfo>
           </div>
         </div>
-      </div>
-      
+      </div>      
     </div>
   );
 }

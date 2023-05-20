@@ -1,14 +1,15 @@
 import { createContext, useContext, useState } from "react";
 import { autenticarApi, obterUserEmailApi } from "./Api/Service";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export const AutCtx    = createContext();
 export const useAutCtx = () =>useContext(AutCtx);
 
 export default function AutProvider({children}){
+
     const [autenticado, setAutenticado] = useState(false);
-    const[usuario,setUsuario] = useState(null);    
-    const[tipo,setAdministrador] = useState(false);
+    const [usuario,setUsuario] = useState(null);    
+    const [tipo,setAdministrador] = useState(false);
     
 
     async function autenticar(usuario,senha){              
@@ -49,11 +50,8 @@ export default function AutProvider({children}){
     return (
         <div>
             <AutCtx.Provider value={{autenticado, autenticar, sair, usuario, atualizaDadosCadastro,tipo}}>
-                {children}
-                
-            </AutCtx.Provider>
-            
-        </div>
-       
+                {children}                
+            </AutCtx.Provider>            
+        </div>       
     )
 }

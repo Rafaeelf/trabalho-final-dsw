@@ -6,8 +6,8 @@ import { useAutCtx } from "../autCtx";
 import { useNavigate } from "react-router-dom";
 
 function Cadastro() {
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const autCtx = useAutCtx();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -126,7 +126,6 @@ function Cadastro() {
       password: senha,
       tipo: 1,
     };
-    console.log(user);
     const resposta = await registerUserApi(user);
     const idInsert = resposta.data.id;
 
@@ -179,242 +178,122 @@ function Cadastro() {
       <div className="dadosPessoais">
         <div className="pessoa">
           <h4>Dados Pessoais</h4>
-
           <Row className="mb-2">
             <FormGroup as={Col} controlId="formGridEmail">
               <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="E-mail"
-                value={email}
-                onChange={handlerEmail}
-              />
+              <Form.Control type="email" placeholder="E-mail" value={email} onChange={handlerEmail}/>
             </FormGroup>
             <FormGroup as={Col} controlId="formGridPassword">
               <Form.Label>Senha</Form.Label>
-              <FormControl
-                type="password"
-                placeholder="Senha"
-                value={senha}
-                onChange={handlerSenha}
-              />
+              <FormControl type="password" placeholder="Senha" value={senha} onChange={handlerSenha}/>
             </FormGroup>
           </Row>
-
-          <FormGroup className="mb-2" controlId="formGridName">
-            <Form.Label>Nome Completo</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Nome Completo"
-              value={nome}
-              onChange={handlerNome}
-            />
-          </FormGroup>
-
+            <FormGroup className="mb-2" controlId="formGridName">
+              <Form.Label>Nome Completo</Form.Label>
+              <Form.Control type="text" placeholder="Nome Completo" value={nome} onChange={handlerNome} />
+            </FormGroup>
           <Row className="mb-2">
             <FormGroup as={Col} controlId="formGridCpf">
               <Form.Label>CPF</Form.Label>
-              <Form.Control
-                type="integer"
-                placeholder="CPF"
-                value={cpf}
-                onChange={handlerCpf}
-              />
+              <Form.Control type="integer" placeholder="CPF" value={cpf} onChange={handlerCpf}/>
             </FormGroup>
-
             <FormGroup as={Col} controlId="formGridCartao">
               <Form.Label>Número Cartão</Form.Label>
-              <Form.Control
-                type="integer"
-                placeholder="Número Cartão"
-                value={cartao}
-                onChange={handlerCartao}
-              />
+              <Form.Control type="integer" placeholder="Número Cartão" value={cartao} onChange={handlerCartao}/>
             </FormGroup>
           </Row>
         </div>
       </div>
       <FormGroup className="mb-3" id="formGridCheckbox">
-        <Form.Check
-          type="checkbox"
-          label="Concordo com os termos de cadastro."
-        />
-      </FormGroup>{" "}
-      <br></br>
+        <Form.Check type="checkbox" label="Concordo com os termos de cadastro."/>
+      </FormGroup>
+      <br/>
       <div className="endereco">
         <h4>Dados Residenciais / Cobrança</h4>
       </div>
-      <br></br>
+      <br/>
       <div className="dadosPessoais">
         <Row className="mb-2">
           <FormGroup as={Col} controlId="formGridRua">
             <Form.Label>Rua</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Rua"
-              value={ruaResi}
-              onChange={handlerRuaResi}
-            />
+            <Form.Control type="text" placeholder="Rua" value={ruaResi} onChange={handlerRuaResi}/>
           </FormGroup>
-
           <FormGroup as={Col} controlId="formGridNumero">
             <Form.Label>Número</Form.Label>
-            <Form.Control
-              type="integer"
-              placeholder="Número Casa ou Apt"
-              value={numResi}
-              onChange={handlerNumResi}
-            />
+            <Form.Control type="integer" placeholder="Número Casa ou Apt" value={numResi} onChange={handlerNumResi}/>
           </FormGroup>
         </Row>
         <Row className="mb-2">
           <FormGroup as={Col} controlId="formGridBairro">
             <Form.Label>Bairro</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Bairro"
-              value={baiResi}
-              onChange={handlerBaiResi}
-            />
+            <Form.Control type="text" placeholder="Bairro" value={baiResi} onChange={handlerBaiResi}/>
           </FormGroup>
-
           <FormGroup as={Col} controlId="formGridCidade">
             <Form.Label>Cidade</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Cidade"
-              value={cidResi}
-              onChange={handlerCidResi}
-            />
+            <Form.Control type="text" placeholder="Cidade" value={cidResi} onChange={handlerCidResi}/>
           </FormGroup>
-
           <FormGroup as={Col} controlId="formGridCEP">
             <Form.Label>CEP</Form.Label>
-            <Form.Control
-              type="integer"
-              placeholder="CEP"
-              value={cepResi}
-              onChange={handlerCepResi}
-            />
+            <Form.Control type="integer" placeholder="CEP" value={cepResi} onChange={handlerCepResi}/>
           </FormGroup>
         </Row>
         <Row className="mb-2">
           <FormGroup as={Col} controlId="formGridEstado">
             <Form.Label>Estado</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Estado"
-              value={estResi}
-              onChange={handlerEstResi}
-            />
+            <Form.Control type="text" placeholder="Estado" value={estResi} onChange={handlerEstResi}/>
           </FormGroup>
-
           <FormGroup as={Col} controlId="formGridPais">
             <Form.Label>País</Form.Label>
-            <Form.Control
-              type="integer"
-              placeholder="País"
-              value={paiResi}
-              onChange={handlerPaiResi}
-            />
+            <Form.Control type="integer" placeholder="País" value={paiResi} onChange={handlerPaiResi}/>
           </FormGroup>
         </Row>
-
-        <FormGroup className="mb-2" controlId="formGridComplemento">
-          <Form.Label>Complemento</Form.Label>
-          <Form.Control
-            placeholder="Complemento ou referencias"
-            value={compResi}
-            onChange={handlerCompResi}
-          />
-        </FormGroup>
+          <FormGroup className="mb-2" controlId="formGridComplemento">
+            <Form.Label>Complemento</Form.Label>
+            <Form.Control placeholder="Complemento ou referencias" value={compResi} onChange={handlerCompResi}/>
+          </FormGroup>
       </div>
       <div className="endereco">
         <h4>Dados de entrega</h4>
       </div>
-      <br></br>
+      <br/>
       <div className="dadosPessoais">
         <Row className="mb-2">
           <FormGroup as={Col} controlId="formGridRua">
             <Form.Label>Rua</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Rua"
-              value={ruaEnt}
-              onChange={handlerRuaEnt}
-            />
+            <Form.Control type="text" placeholder="Rua" value={ruaEnt} onChange={handlerRuaEnt}/>
           </FormGroup>
-
           <FormGroup as={Col} controlId="formGridNumero">
             <Form.Label>Número</Form.Label>
-            <Form.Control
-              type="integer"
-              placeholder="Número Casa ou Apt"
-              value={numEnt}
-              onChange={handlerNumEnt}
-            />
+            <Form.Control type="integer" placeholder="Número Casa ou Apt" value={numEnt} onChange={handlerNumEnt}/>
           </FormGroup>
         </Row>
         <Row className="mb-2">
           <FormGroup as={Col} controlId="formGridBairro">
             <Form.Label>Bairro</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Bairro"
-              value={baiEnt}
-              onChange={handlerBaiEnt}
-            />
+            <Form.Control type="text" placeholder="Bairro" value={baiEnt} onChange={handlerBaiEnt}/>
           </FormGroup>
-
           <FormGroup as={Col} controlId="formGridCidade">
             <Form.Label>Cidade</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Cidade"
-              value={cidEnt}
-              onChange={handlerCidEnt}
-            />
+            <Form.Control type="text" placeholder="Cidade" value={cidEnt} onChange={handlerCidEnt}/>
           </FormGroup>
-
           <FormGroup as={Col} controlId="formGridCEP">
             <Form.Label>CEP</Form.Label>
-            <Form.Control
-              type="integer"
-              placeholder="CEP"
-              value={cepEnt}
-              onChange={handlerCepEnt}
-            />
+            <Form.Control type="integer" placeholder="CEP" value={cepEnt} onChange={handlerCepEnt}/>
           </FormGroup>
         </Row>
         <Row className="mb-2">
           <FormGroup as={Col} controlId="formGridEstado">
             <Form.Label>Estado</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Estado"
-              value={estEnt}
-              onChange={handlerEstEnt}
-            />
+            <Form.Control type="text" placeholder="Estado" value={estEnt} onChange={handlerEstEnt}/>
           </FormGroup>
-
           <FormGroup as={Col} controlId="formGridPais">
             <Form.Label>País</Form.Label>
-            <Form.Control
-              type="integer"
-              placeholder="País"
-              value={paiEnt}
-              onChange={handlerPaiEnt}
-            />
+            <Form.Control type="integer" placeholder="País" value={paiEnt} onChange={handlerPaiEnt}/>
           </FormGroup>
         </Row>
-
         <FormGroup className="mb-2" controlId="formGridComplemento">
           <Form.Label>Complemento</Form.Label>
-          <Form.Control
-            placeholder="Complemento ou referencias"
-            value={compEnt}
-            onChange={handlerCompEnt}
-          />
+          <Form.Control placeholder="Complemento ou referencias" value={compEnt} onChange={handlerCompEnt}/>
         </FormGroup>
       </div>
       <div className="btnCadastrar">
@@ -422,7 +301,7 @@ function Cadastro() {
           Cadastrar
         </a>
       </div>
-      <br></br>
+      <br/>
     </Form>
   );
 }

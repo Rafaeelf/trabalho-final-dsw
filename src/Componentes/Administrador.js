@@ -9,6 +9,7 @@ export default function Administrador() {
   const navigate = useNavigate();
   const [produtos, setProdutos] = useState([]);
   const [temRegistro,setTemRegistro] = useState(false);
+  
   useEffect(() => atualizarProdutos());
 
   function atualizarProdutos() {
@@ -16,8 +17,8 @@ export default function Administrador() {
       .then((resposta) => {
         setProdutos(resposta.data);
       })
-
       .catch((erro) => console.log(erro));
+
       if(produtos.length > 0){
         setTemRegistro(true);
       } else {
@@ -76,7 +77,6 @@ export default function Administrador() {
               <button class="btn" onClick={() => listarUsuarios()}>Listar clientes</button>
           </div>
         </div>
-
         <div class="col-sm-6 col-md-4">
           <div class="ls-box">
             <div class="ls-box-head">
@@ -85,7 +85,6 @@ export default function Administrador() {
             <button class="btn" onClick={() => cadastrarProduto()}>Cadastrar Produtos</button>
           </div>
         </div>
-
         <div class="col-sm-6 col-md-4">
           <div class="ls-box ls-box">
             <h6 class="ls-title-4"><strong>ENTREGAS REALIZADAS</strong></h6>

@@ -7,7 +7,7 @@ export default function Produtos() {
   const [produtos, setProdutos] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => atualizarProdutos());
+  useEffect(() => atualizarProdutos(),[]);
 
   function atualizarProdutos() {
     obterProdutosApi()
@@ -19,14 +19,12 @@ export default function Produtos() {
   }
 
   function visualizarTarefa(id) {
-    console.log(id);
     navigate(`/produtoDetalhes/${id}`);
   }
 
   return (
     <div class="container">
-      <table className="table">
-        
+      <table className="table">        
         <tbody>
           {produtos.map((produto) => (
             <tr key={produto.id}>

@@ -5,6 +5,8 @@ import "./Carrinho.css";
 import React, { useEffect } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import ToastInfo from "./ToastInfo";
+import { Toast } from "bootstrap";
 
 export default function Carrinho() {
 
@@ -40,7 +42,7 @@ export default function Carrinho() {
       var cont = 0;
       var valTaxa = 0;
       produtos.map((produtoPed) => (
-          cont = cont + (produtoPed.quantidade * produtoPed.produto.preco),
+          cont += (produtoPed.quantidade * produtoPed.produto.preco),
           valTaxa ++
       ));
       setTotal(cont);
@@ -52,7 +54,6 @@ export default function Carrinho() {
         setCartao(resposta.data.cartao);
       })
       .catch((erro)=>console.log(erro.data))
-      .finally()
 
       obterEnderecoEntrega(usuario)
       .then((resposta)=>{
@@ -65,11 +66,9 @@ export default function Carrinho() {
         setPaiEnt(resposta.data.pais);
         setCompEnt(resposta.data.complemento)
       })
-
     }else {
       setTemRegistro(false);
-    }
-    
+    }    
   }
 
   function removeItemCarrinho(id){
@@ -88,7 +87,9 @@ export default function Carrinho() {
     event.preventDefault();
 
     if(pagamento === "0"){
-      alert("Informe uma forma de Pagamento!");
+      const toastLiveExample = document.getElementById("liveToast");
+      const toast = new Toast(toastLiveExample);
+      toast.show();      
     } else {
       const pedido = {
         usuario: usuario,
@@ -99,7 +100,9 @@ export default function Carrinho() {
         navigate(`/inicio`);
       })
       .catch((erro)=> {
-        alert("Não existe produtos no carrinho!");      
+        const toastLiveExample = document.getElementById("liveToast");
+        const toast = new Toast(toastLiveExample);
+        toast.show(); 
       });
     }
   };
@@ -138,7 +141,6 @@ export default function Carrinho() {
                   <td>
                     <div class="cart-cell ">
                       <button className="btn" onClick={() => removeItemCarrinho(produtoPed.id)}><FaTrashAlt/></button>
-                      <span></span>
                     </div>
                   </td>
                 </tr>
@@ -148,13 +150,11 @@ export default function Carrinho() {
               )}
             </table>
           </div>
-
           <footer>
             <div class="totals">
               <p class="total-label">Subtotal</p>
               <p class="total-amount">R${parseFloat((Math.round ((total) * 100) / 100).toFixed(2))}</p>
             </div>
-
             <div class="totals">
               <p class="total-label">Taxa de entrega</p>
               <p class="total-amount">R${parseFloat((Math.round ((taxa) * 100) / 100).toFixed(2))}.00</p>
@@ -162,72 +162,72 @@ export default function Carrinho() {
             <div class="totals">
               <p class="total-label">Total</p>
               <p class="total-amount">R${parseFloat((Math.round ((total + taxa) * 100) / 100).toFixed(2))}</p>
-            </div>
-            
-              {temRegistro && (
+            </div>            
+            {temRegistro && (
+              <div>
                 <div>
-                  <div>
-                    <p>Informações de Pagamento</p>
-                  </div>
-                  <div class="totals">
-                    <p class="total-label">Nome:</p>
-                    <p class="total-amount">{nome}</p>
-                  </div>
-                  <div class="totals">
-                    <p class="total-label">Número do Cartão:</p>
-                    <p class="total-amount">{cartao}</p>
-                  </div>
-                  <div class="totals">
-                    <p class="total-label">Forma de Pagamento:</p>                    
-                    <select value={pagamento} onChange={handleChange}>
-                      <option value ="0" selected>Selecione...</option>
-                      <option value="Crédito">Crédito</option>
-                      <option value="Débito">Débito</option>
-                      <option value="Boleto">Boleto</option>
-                    </select>
-                  </div>
-                  <div>
-                    <p>Endereço de Entrega</p>
-                  </div>
-                  <div class="totals">
-                    <p class="total-label">Rua:</p>
-                    <p class="total-amount">{ruaEnt}</p>
-                  </div>
-                  <div class="totals">
-                    <p class="total-label">Número:</p>
-                    <p class="total-amount">{numEnt}</p>
-                  </div>
-                  <div class="totals">
-                    <p class="total-label">Bairro:</p>
-                    <p class="total-amount">{baiEnt}</p>
-                  </div>
-                  <div class="totals">
-                    <p class="total-label">Cidade:</p>
-                    <p class="total-amount">{cidEnt}</p>
-                  </div>
-                  <div class="totals">
-                    <p class="total-label">CEP:</p>
-                    <p class="total-amount">{cepEnt}</p>
-                  </div>
-                  <div class="totals">
-                    <p class="total-label">Estado:</p>
-                    <p class="total-amount">{estEnt}</p>
-                  </div>
-                  <div class="totals">
-                    <p class="total-label">País:</p>
-                    <p class="total-amount">{paiEnt}</p>
-                  </div>
-                  <div class="totals">
-                    <p class="total-label">Complemento:</p>
-                    <p class="total-amount">{compEnt}</p>
-                  </div>
+                  <p>Informações de Pagamento</p>
                 </div>
-              )}
+                <div class="totals">
+                  <p class="total-label">Nome:</p>
+                  <p class="total-amount">{nome}</p>
+                </div>
+                <div class="totals">
+                  <p class="total-label">Número do Cartão:</p>
+                  <p class="total-amount">{cartao}</p>
+                </div>
+                <div class="totals">
+                  <p class="total-label">Forma de Pagamento:</p>                    
+                  <select value={pagamento} onChange={handleChange}>
+                    <option value ="0" selected>Selecione...</option>
+                    <option value="Crédito">Crédito</option>
+                    <option value="Débito">Débito</option>
+                    <option value="Boleto">Boleto</option>
+                  </select>
+                </div>
+                <div>
+                  <p>Endereço de Entrega</p>
+                </div>
+                <div class="totals">
+                  <p class="total-label">Rua:</p>
+                  <p class="total-amount">{ruaEnt}</p>
+                </div>
+                <div class="totals">
+                  <p class="total-label">Número:</p>
+                  <p class="total-amount">{numEnt}</p>
+                </div>
+                <div class="totals">
+                  <p class="total-label">Bairro:</p>
+                  <p class="total-amount">{baiEnt}</p>
+                </div>
+                <div class="totals">
+                  <p class="total-label">Cidade:</p>
+                  <p class="total-amount">{cidEnt}</p>
+                </div>
+                <div class="totals">
+                  <p class="total-label">CEP:</p>
+                  <p class="total-amount">{cepEnt}</p>
+                </div>
+                <div class="totals">
+                  <p class="total-label">Estado:</p>
+                  <p class="total-amount">{estEnt}</p>
+                </div>
+                <div class="totals">
+                  <p class="total-label">País:</p>
+                  <p class="total-amount">{paiEnt}</p>
+                </div>
+                <div class="totals">
+                  <p class="total-label">Complemento:</p>
+                  <p class="total-amount">{compEnt}</p>
+                </div>
+              </div>
+            )}
             <div className="btnFinalizar">
               <button class="btn" onClick={handleSubmitPedido}>Finalizar</button>
             </div>
           </footer>
         </div>
+        <ToastInfo texto={"Não existe produtos no carrinho ou não foi informado uma forma de pagamento!!"} ></ToastInfo>
       </div>
     </body>
   );

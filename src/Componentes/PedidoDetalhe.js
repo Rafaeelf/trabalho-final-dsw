@@ -3,25 +3,22 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { obterProdutoPedidoApi } from "../Api/Service";
 
-
-
 export default function PedidoDetalhe(){
 
     const { id } = useParams();
-    const [produtos, setProdutos] = useState([]);
+    const [produtos, setProdutosPedido] = useState([]);
     const [total, setTotal] = useState('');
     let valor = 0;
 
-    useEffect(() => atualizarPedidoProdutos(id));
+    useEffect(() => atualizarPedidoProdutos(id),[produtos]);
 
     function atualizarPedidoProdutos(id) {        
         obterProdutoPedidoApi(id)
         .then((resposta) => {
-            setProdutos(resposta.data); 
+            setProdutosPedido(resposta.data); 
             calculaTotal();
         })
-        .catch((erro) => console.log(erro));
-        
+        .catch((erro) => console.log(erro));        
     }
 
     function calculaTotal (){
@@ -60,10 +57,7 @@ export default function PedidoDetalhe(){
                     <td>R$ {parseFloat((Math.round ((total) * 100) / 100).toFixed(2))}</td>
                 </tr>
                 </tbody>
-            </table>
-            
+            </table>            
         </div>
     )
-
-
 }

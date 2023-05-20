@@ -1,10 +1,8 @@
-
 import Produtos from "./Produtos";
-import React from 'react';
+import React from "react";
 
-export default function Produto(){
+export default function Produto() {
 
-    return(
-       <Produtos></Produtos>
-    );
+  return <Produtos/>;
+  
 }

@@ -4,6 +4,7 @@ import "./Cabecalho.css";
 import { useAutCtx } from "../autCtx";
 
 function Cabecalho() {
+  
   const autCtx = useAutCtx();
   const foiAutenticado = autCtx.autenticado;
   const tipoUsuario = autCtx.tipo;

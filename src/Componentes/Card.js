@@ -38,14 +38,11 @@ export default function Card() {
           <div class="col">
             <div className="card">
               <img class="card-img" src={"./img/"+produto.foto} alt="imagem"/>
-
               <div class="card-body">
                 <h5>{produto.descricao}</h5>
                 <h5>R$ {produto.preco} </h5>
                 <h5>Tamanho: {produto.tamanho} </h5>
-                <button className="btn btn-success"  onClick={() => visualizarProduto(produto.id)}>
-                  Ver +
-                </button>
+                <button className="btn btn-success"  onClick={() => visualizarProduto(produto.id)}>Ver +</button>
               </div>
             </div>
           </div>

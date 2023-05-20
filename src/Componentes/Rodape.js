@@ -1,6 +1,7 @@
 import "./Rodape.css";
 
 export default function Rodape() {
+
   return (
     <footer className="footer">
       <div className="principal">
@@ -18,20 +19,14 @@ export default function Rodape() {
         </div>
         <div className="pagamento">
           <h5>Formas de Pagamento:</h5>
-          <br></br>
+          <br/>
           <div className="pagamento-card">
             <div>
-              <img
-                alt="visa"
-                src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png"
-              />
+              <img alt="visa" src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png"/>
             </div>
-            <br></br>
+            <br/>
             <div>
-              <img
-                alt="mastercard"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1200px-MasterCard_Logo.svg.png"
-              />
+              <img alt="mastercard" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1200px-MasterCard_Logo.svg.png"/>
             </div>
           </div>
         </div>
