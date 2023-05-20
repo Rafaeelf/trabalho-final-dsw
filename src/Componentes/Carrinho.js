@@ -119,34 +119,26 @@ export default function Carrinho() {
             <table className="table">
               {temRegistro && (produtos.map((produtoPed) => (
                 <tr key={produtoPed.id}>
+                  <td><h5>{produtoPed.produto.descricao}</h5></td>
+                  <td><p>Tamanho: {produtoPed.produto.tamanho}</p></td>
                   <td>
-                    <div class="cart">
-                      <div class="cart">      
-                                        
-                        <div class="cart-container">
-                          <h5>{produtoPed.produto.descricao}</h5>
-                          <p>Tamanho: {produtoPed.produto.tamanho}</p>
-                        </div>
-                        <br></br>
-                        <div class="cart-row-cell quant">
-                          <ul>
-                            <li>
-                              <button onClick={() => diminuiQuantidadeCarrinho(produtoPed.id)}>-</button>                              
-                            </li>
-                            <li>{produtoPed.quantidade}</li>
-                            <li>
-                              <button onClick={() => aumentaQuantidadeCarrinho(produtoPed.id)}>+</button>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="cart-amount">
-                          <p>R${produtoPed.produto.preco * produtoPed.quantidade}</p>
-                        </div>
-                        <div class="cart-cell ">
-                          <button className="btn" onClick={() => removeItemCarrinho(produtoPed.id)}><FaTrashAlt/></button>
-                          <span></span>
-                        </div>
-                      </div>
+                    <div class="cart-row-cell quant">
+                      <ul>
+                        <li><button onClick={() => diminuiQuantidadeCarrinho(produtoPed.id)}>-</button></li>
+                        <li>{produtoPed.quantidade}</li>
+                        <li><button onClick={() => aumentaQuantidadeCarrinho(produtoPed.id)}>+</button></li>
+                      </ul>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="cart-amount">
+                      <p>R${parseFloat((Math.round ((produtoPed.produto.preco * produtoPed.quantidade) * 100) / 100).toFixed(2))}</p>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="cart-cell ">
+                      <button className="btn" onClick={() => removeItemCarrinho(produtoPed.id)}><FaTrashAlt/></button>
+                      <span></span>
                     </div>
                   </td>
                 </tr>
@@ -160,16 +152,16 @@ export default function Carrinho() {
           <footer>
             <div class="totals">
               <p class="total-label">Subtotal</p>
-              <p class="total-amount">R${total}</p>
+              <p class="total-amount">R${parseFloat((Math.round ((total) * 100) / 100).toFixed(2))}</p>
             </div>
 
             <div class="totals">
               <p class="total-label">Taxa de entrega</p>
-              <p class="total-amount">R${taxa}</p>
+              <p class="total-amount">R${parseFloat((Math.round ((taxa) * 100) / 100).toFixed(2))}</p>
             </div>
             <div class="totals">
               <p class="total-label">Total</p>
-              <p class="total-amount">R${total + taxa}</p>
+              <p class="total-amount">R${parseFloat((Math.round ((total + taxa) * 100) / 100).toFixed(2))}</p>
             </div>
             
               {temRegistro && (
