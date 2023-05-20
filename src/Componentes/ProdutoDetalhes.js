@@ -34,7 +34,7 @@ export default function ProdutoDetalhes() {
   function carregaDados(resposta) {
     setDescricao(resposta.data.descricao);
     setPreco(resposta.data.preco);
-    setFoto("./img/" + resposta.data.foto);
+    setFoto(resposta.data.foto);
     setQuantidade(resposta.data.quantidade);
     setTamanho(resposta.data.tamanho);
     setInformacao(resposta.data.informacao);
@@ -86,8 +86,10 @@ export default function ProdutoDetalhes() {
         <Form>
           <Row>
             <FormGroup as={Col} controlId="formGridImage">
-              <div className="card">
-                <img class="card-img-top" src={foto} alt="imagem" />
+              <div class="col">
+                <div className="card">
+                  <img class="card-img-top" src={"./img/"+foto} alt="imagem" />
+                </div>
               </div>
             </FormGroup>
             <FormGroup as={Col} controlId="formGridPreview">
@@ -114,11 +116,6 @@ export default function ProdutoDetalhes() {
           </Row>
         </Form>
         <ToastInfo texto={erro ? "Efetue o Login para incluir produtos no carrinho!" : "Informe uma quantidade!!!"}/>
-      </div>
-      <br/>
-      <div class="row">
-        <p><h2>Sucesso de venda</h2></p>
-        <Card></Card>
       </div>      
     </div>
   );

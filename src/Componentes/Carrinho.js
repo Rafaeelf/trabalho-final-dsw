@@ -17,7 +17,7 @@ export default function Carrinho() {
   const [cartao,setCartao] = useState('');
   const [temRegistro,setTemRegistro] = useState(false);
   const navigate = useNavigate();
-  const [pagamento, setPagamento] = useState('Crédito');  
+  const [pagamento, setPagamento] = useState('0');  
   const [ruaEnt, setRuaEnt] = useState('');
   const [numEnt, setNumEnt] = useState('');
   const [baiEnt, setBaiEnt] = useState('');
@@ -157,7 +157,7 @@ export default function Carrinho() {
 
             <div class="totals">
               <p class="total-label">Taxa de entrega</p>
-              <p class="total-amount">R${parseFloat((Math.round ((taxa) * 100) / 100).toFixed(2))}</p>
+              <p class="total-amount">R${parseFloat((Math.round ((taxa) * 100) / 100).toFixed(2))}.00</p>
             </div>
             <div class="totals">
               <p class="total-label">Total</p>

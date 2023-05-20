@@ -35,7 +35,7 @@ export default function Produtos() {
               <td>{produto.tamanho}</td>
               <td>{produto.preço}</td>
               <td>
-                <button class="btn btn-success mb-3" onClick={() => visualizarTarefa(produto.id)}> Ver + </button>
+                <button class="btn btn-success" onClick={() => visualizarTarefa(produto.id)}> Ver + </button>
               </td>
             </tr>
           ))}

@@ -10,7 +10,7 @@ export default function Card() {
   const navigate = useNavigate();
   const [temRegistro,setTemRegistro] = useState(false);
 
-  useEffect(() => atualizarProdutos());
+  useEffect(() => atualizarProdutos(),[produtos]);
 
   function atualizarProdutos() {
     obterSucessoProduto()
@@ -37,12 +37,13 @@ export default function Card() {
         {temRegistro && produtos.map((produto) => (
           <div class="col">
             <div className="card">
-              <img class="card-img-top" src="./img/camisaNirvana.jpg" alt="imagem"/>
+              <img class="card-img" src={"./img/"+produto.foto} alt="imagem"/>
 
               <div class="card-body">
                 <h5>{produto.descricao}</h5>
-                <p class="card-text"> R$ {produto.preco} </p>
-                <button className="btn btn-success mb-3"  onClick={() => visualizarProduto(produto.id)}>
+                <h5>R$ {produto.preco} </h5>
+                <h5>Tamanho: {produto.tamanho} </h5>
+                <button className="btn btn-success"  onClick={() => visualizarProduto(produto.id)}>
                   Ver +
                 </button>
               </div>

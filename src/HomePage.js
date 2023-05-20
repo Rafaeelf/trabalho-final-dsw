@@ -31,7 +31,7 @@ function HomePage() {
     if(autCtx.tipo && autCtx.autenticado){
       return children;
     }
-
+    return <Navigate to="/" />;
   }
 
   return (
@@ -48,9 +48,9 @@ function HomePage() {
             <Route path="/produtoDetalhes/:id" element={<ProdutoDetalhes />}></Route>
 
             {<Route path="/produtos/cadastro" element={
-              <AuthenticateRouteAdm>
+              <AuthenticateRoute>
                 <CadastroProdutos />
-              </AuthenticateRouteAdm>}>
+              </AuthenticateRoute>}>
             </Route>}
             {<Route path="/carrinho" element={
               <AuthenticateRoute>
@@ -63,31 +63,25 @@ function HomePage() {
                 </AuthenticateRoute>}>
             </Route>}
             {<Route path="/entrega/:id/pedido" element={
-                <AuthenticateRouteAdm>
+                <AuthenticateRoute>
                     <EntregaDetalhe />
-                </AuthenticateRouteAdm>}>
+                </AuthenticateRoute>}>
             </Route>}     
             {<Route path="/users" element={
-                <AuthenticateRouteAdm>
+                <AuthenticateRoute>
                     <Cliente />
-                </AuthenticateRouteAdm>}>
+                </AuthenticateRoute>}>
             </Route>}    
             {<Route path="/entregas" element={
-                <AuthenticateRouteAdm>
+                <AuthenticateRoute>
                     <Entregas />
-                </AuthenticateRouteAdm>}>
+                </AuthenticateRoute>}>
             </Route>}                    
             {<Route path="/administrador" element={
-                <AuthenticateRouteAdm>
-                    <Administrador />
-                </AuthenticateRouteAdm>}>
-            </Route>}            
-            {<Route path="/carrinho" element={
                 <AuthenticateRoute>
-                    <Carrinho />
+                    <Administrador />
                 </AuthenticateRoute>}>
-            </Route>
-            }
+            </Route>}  
             {<Route path="/compras" element={
                 <AuthenticateRoute>
                     <Compra />

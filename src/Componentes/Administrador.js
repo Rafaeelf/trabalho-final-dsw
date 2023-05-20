@@ -54,22 +54,19 @@ export default function Administrador() {
           {temRegistro && produtos.map((produto) => (
             <div class="col">
               <div className="card">
-                <img class="card-img-top" src="./img/camisaNirvana.jpg"></img>
-
+                <img class="card-img" src={"./img/"+produto.foto}></img>
                 <div class="card-body">
                   <h5>{produto.descricao}</h5>
-                  <p class="card-text"> R$ {produto.preco} </p>
-                  <button className="btn btn-success mb-3"  onClick={() => visualizarProduto(produto.id)}>
-                    Ver +
-                  </button>
+                  <h5>R$ {produto.preco} </h5>
+                  <h5>Tamanho: {produto.tamanho} </h5>
+                  <button className="btn btn-success"  onClick={() => visualizarProduto(produto.id)}>Ver +</button>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </header>
-
-      <br></br>
+      <br/>
       <div id="sending-stats" class="row">
         <div class="col-sm-6 col-md-4">
           <div class="ls-box">

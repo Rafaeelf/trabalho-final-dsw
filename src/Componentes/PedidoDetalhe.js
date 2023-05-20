@@ -47,8 +47,8 @@ export default function PedidoDetalhe(){
                         <td>{produtoPed.produto.descricao}</td>
                         <td>{produtoPed.produto.tamanho}</td>
                         <td>{produtoPed.quantidade}</td>
-                        <td>{produtoPed.preco}</td>
-                        <td>{produtoPed.total}</td>
+                        <td>R${parseFloat((Math.round ((produtoPed.preco) * 100) / 100).toFixed(2))}</td>
+                        <td>R${parseFloat((Math.round ((produtoPed.total) * 100) / 100).toFixed(2))}</td>
                     </tr>
                 ))}
                 <tr>
@@ -57,7 +57,7 @@ export default function PedidoDetalhe(){
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td>{total}</td>
+                    <td>R$ {parseFloat((Math.round ((total) * 100) / 100).toFixed(2))}</td>
                 </tr>
                 </tbody>
             </table>

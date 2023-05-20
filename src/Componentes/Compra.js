@@ -11,7 +11,7 @@ export default function Compra() {
     const autCtx = useAutCtx();
     const user = autCtx.usuario;
 
-    useEffect(() => atualizarPedidos());
+    useEffect(() => atualizarPedidos(),[]);
 
     function atualizarPedidos() {
         obterPedidosUsuarioApi(user)
