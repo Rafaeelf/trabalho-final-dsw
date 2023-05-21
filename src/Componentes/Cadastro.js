@@ -124,7 +124,7 @@ function Cadastro() {
       cartao: cartao,
       email: email,
       password: senha,
-      tipo: 1,
+      tipo: 2,
     };
     const resposta = await registerUserApi(user);
     const idInsert = resposta.data.id;
